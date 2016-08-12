@@ -14,6 +14,7 @@ local PLAYER_TAG = "player"
 local ADD_ON_LOADED_REGISTER_NAME = LioFADR.name .. "_OnLoad"
 local PLAYER_ACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player"
 local UPDATE_INTERVAL_REGISTER_NAME = LioFADR.name .. "_Update"
+local UPDATE_ONCE_REGISTER_NAME = LioFADR.name .. "_UpdateOnce"
 local SAVED_PREFS_NAME = LioFADR.name .. "_SavedPrefs"
 
 local UPDATE_INTERVAL_MSEC = 500
@@ -33,17 +34,68 @@ end
 -- 効果が切れた時は、「食べ物または飲み物の効果が切れました！」とvanilla UI上で表示する。その際、戦闘中でない場合は、（効果がない時）と同じ処理を実行。
 -- 食べ物または飲み物の残り時間が少なくなる（3分未満、設定変更可能）と、Vanilla UI上で「xxx（食べ物の名前、できればアイコン付き）の効果がまもなく切れます」と表示する
 
--- Main Logic
+-- Cyclic check
 local function LioFADR.onUpdate()
 
 	if(IsUnitInDungeon(PLAYER_TAG)) then
-	  -- ダンジョンの中
+		-- ダンジョンの中
+		scanBuffs()
 		
 	else
-	  -- ダンジョンの外
+		-- ダンジョンの外
+		-- 何もしない	
+	end
+
+end
+
+-- Scan buffs
+local function LioFADR.scanBuffs()
+
+	-- 「食べ物」と「飲み物」の効果があるかどうかのチェック
+	local buffsNum = GetNumBuffs(PLAYER_TAG)
+	local currentBuffs = {}
+	local notifyIntervalSec = 1
+	
+	-- 現在のバフ数ループ
+	for i = 1, buffsNum do
+	
+		-- バフを1つずつ取り出す
+		local buffName, 
+		timeStarted, 
+		timeEnding, 
+		buffSlot, 
+		stackCount, 
+		iconFilename, 
+		buffType, 
+		effectType, 
+		abilityType, 
+		statusEffectType, 
+		abilityId, 
+		canClickOff = GetUnitBuffInfo(PLAYER_TAG, i)
+
+		-- 有効なバフかどうかのチェック
+		if(getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)) then
+		
+		  -- 現在のバフリストに追加
+		  table.insert(currentBuffs, abilityId)
+		
+			-- 残り時間の算出
+			local remainSec = timeEnding - (GetGameTimeMilliseconds() / 1000)
+			
+		
+		end	
 	
 	end
 
+end
+
+-- 有効なバフかどうかのチェック
+local function LioFADR.getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)
+	return (effectType == BUFF_EFFECT_TYPE_BUFF) and 
+				 (statusEffectType == STATUS_EFFECT_TYPE_NONE) and 
+				 ((timeEnding - timeStarted) > 0) and
+				 (in_array( abilityType, { ABILITY_TYPE_NONE, ABILITY_TYPE_BONUS } )) and
+				 canClickOff
 end
 
 -- player deactivated
