@@ -2,7 +2,7 @@
   <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
     <Category name="Lionas's Food and Drink Reminder">
       <Action name="LIO_FADR_ACTIVATE">
-        <Down>SLASH_COMMANDS["/lfda"]()</Down>
+        <Down>toggleEnable()</Down>
       </Action>
     </Category>
   </Layer>

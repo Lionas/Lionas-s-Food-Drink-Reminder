@@ -29,6 +29,7 @@ function LioFADRMenu.LoadLAM2Panel()
             type = "checkbox",
             name = GetString(LIO_FADR_ENABLE_TITLE),
             tooltip = GetString(LIO_FADR_ENABLE_TOOLTIP),
+            default = LioFADR.savedVariables.enable,
             getFunc = 
               function() 
                 return LioFADR.savedVariables.enable
