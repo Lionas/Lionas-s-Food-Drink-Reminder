@@ -24,7 +24,7 @@ Libs/LibAddonMenu-2.0/controls/header.lua
 Libs/LibAddonMenu-2.0/controls/slider.lua
 Libs/LibAddonMenu-2.0/controls/texture.lua
 
-##Lang/en.lua
+Lang/en.lua
 Lang/$(language).lua
 
 LionasFoodAndDrinkReminderMenu.lua

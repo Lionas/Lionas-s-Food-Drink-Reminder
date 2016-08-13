@@ -1,33 +1,26 @@
-﻿-- Advanced Disable Controller UI
+﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 -- English specific file
 
--- Description
-ZO_CreateStringId("ADCUI_DESCRIPTION", "Disable controller UI and adjustment compass.")
+-- enable/disable
+ZO_CreateStringId("LIO_FADR_ENABLE", "[<<1>>] is Enabled.")
+ZO_CreateStringId("LIO_FADR_DISABLE", "[<<1>>] is Disabled.")
 
--- lock compass
-ZO_CreateStringId("ADCUI_LOCK_TITLE", "Lock")
-ZO_CreateStringId("ADCUI_LOCK_TOOLTIP", "Lock/Unlock compass")
+-- notification
+ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_HOUR_MIN", "The effect of the meal goes off after <<1>> hour(s) <<2>> min(s).")
+ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_MIN", "The effect of the meal goes off after <<1>> min(s).")
+ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_CLOSED", "The effect of the meal goes off soon.")
+ZO_CreateStringId("LIO_FADR_NEAR_EXPIRED", "You lost effect of the meal!")
 
--- compass scale
-ZO_CreateStringId("ADCUI_SCALE_TITLE", "Scale")
-ZO_CreateStringId("ADCUI_SCALE_TOOLTIP", "Scale of compass")
+ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "There is no effect of the meal!")
 
--- compass width
-ZO_CreateStringId("ADCUI_WIDTH_TITLE", "Width")
-ZO_CreateStringId("ADCUI_WIDTH_TOOLTIP", "Width of compass")
-
--- compass height
-ZO_CreateStringId("ADCUI_HEIGHT_TITLE", "Height")
-ZO_CreateStringId("ADCUI_HEIGHT_TOOLTIP", "Height of compass")
-
--- center pin text scale
-ZO_CreateStringId("ADCUI_LABEL_SCALE_TITLE", "Label Scale")
-ZO_CreateStringId("ADCUI_LABEL_SCALE_TOOLTIP", "Center pin text scale of compass")
-
--- disable addon
-ZO_CreateStringId("ADCUI_USE_CONTROLLER_UI", "Use controller UI")
+-- menus
+ZO_CreateStringId("LIO_FADR_DESCRIPTION", "The add-on it notify of the state of the meal.")
+ZO_CreateStringId("LIO_FADR_ENABLE_TITLE", "Enable notification")
+ZO_CreateStringId("LIO_FADR_ENABLE_TOOLTIP", "When notifying of the state of the meal, please check it.")
+ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TITLE", "Threshold of Notify[min(s)]")
+ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TOOLTIP", "Notify the state of meal if it'll be below this time.")
 
 -- keybinds
-ZO_CreateStringId("SI_BINDING_NAME_ADCUI_ACTIVATE", "Show Menu")
-ZO_CreateStringId("SI_BINDING_NAME_ADCUI_USE_GAMEPAD", "Use controller UI")
+ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Enable/Disable Notify")
+
