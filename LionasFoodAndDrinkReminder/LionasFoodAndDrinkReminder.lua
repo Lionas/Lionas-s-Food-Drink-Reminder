@@ -152,7 +152,7 @@ local function buildNotifyMessage(remainSec, buffName)
     local mins = math.floor((remainSec % HOUR_PER_SECS) / MIN_PER_SECS)
     
     return zo_strformat(GetString(LIO_FADR_NEAR_EXPIRE_HOUR_MIN), getColoredString(TIME_COLOR, hours), getColoredString(TIME_COLOR, mins))
-          
+
   end
   
   if (remainSec >= MIN_PER_SECS) and (remainSec < HOUR_PER_SECS) then
@@ -253,7 +253,7 @@ local function notifyExpiredBuffs(currentBuffs)
   for _, id in pairs(LioFADR.notifyFirst) do
     
     -- 現在のバフ一覧に入っていないものはもうバフが切れているので、期限切れ一覧に追加
-    if not isContain(id, currentBuffs) then
+    if (not isContain(id, currentBuffs)) and (not isContain(id, expiredBuffs)) then
       table.insert(expiredBuffs, id)
     end
     
@@ -325,14 +325,14 @@ local function scanBuffs()
     
       -- Expired通知の削除
       if(isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
-        removeFromTable(LioFADR.notifyExpired, abilityId)
+        removeFromTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
       end
     
 		  -- 現在のバフリストに追加
 		  table.insert(currentBuffs, abilityId)
 		
 		  -- 残り時間の算出
-		  local remainSec = timeEnding - (GetGameTimeMilliseconds() / 1000)
+		  local remainSec = math.floor(timeEnding - (GetGameTimeMilliseconds() / 1000))
 	
       -- 残り時間が延長されたバフがある場合は通知していないことにする
       extendRemainTime(remainSec, abilityId)
@@ -366,7 +366,7 @@ local function onUpdate()
 
   -- ダンジョンを出たらフラグをOFFにする
   if(not IsUnitInDungeon(PLAYER_TAG)) then
-	removeFromTable(LioFADR.notifyFirst, abilityId)
+	clearTable(LioFADR.notifyFirst)
   end
 
   scanBuffs()
