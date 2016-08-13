@@ -1,4 +1,4 @@
-﻿## Title: Lionas's Food & Drink Reminder
+﻿## Title: Lionas's Food and Drink Reminder
 ## APIVersion: 100016
 ## Version: 0.1.0
 ## Author: Lionas
@@ -27,7 +27,7 @@ Libs/LibAddonMenu-2.0/controls/texture.lua
 ##Lang/en.lua
 Lang/$(language).lua
 
-##LionasFoodAndDrinkReminderMenu.lua
+LionasFoodAndDrinkReminderMenu.lua
 LionasFoodAndDrinkReminder.lua
 
 Bindings.xml

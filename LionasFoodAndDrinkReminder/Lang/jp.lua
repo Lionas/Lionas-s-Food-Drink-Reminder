@@ -11,7 +11,14 @@ ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_MIN", "残り<<1>>分で<<2>>の効果�
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_CLOSED", "<<1>>の効果がまもなく消えます")
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRED", "<<1>>の効果が切れました！")
 
-ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "食べ物/飲み物の効果を発動してください")
+ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "食べ物または飲み物の効果がありません！")
+
+-- menus
+ZO_CreateStringId("LIO_FADR_DESCRIPTION", "食べ物または飲み物の状態を通知するアドオンです")
+ZO_CreateStringId("LIO_FADR_ENABLE_TITLE", "通知を有効にする")
+ZO_CreateStringId("LIO_FADR_ENABLE_TOOLTIP", "食べ物または飲み物の状態を通知する場合はチェックしてください")
+ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TITLE", "通知タイミング[分]")
+ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TOOLTIP", "残り時間がこの時間未満になったら通知します")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "有効")
