@@ -20,6 +20,8 @@ ZO_CreateStringId("LIO_FADR_ENABLE_TITLE", "通知を有効にする")
 ZO_CreateStringId("LIO_FADR_ENABLE_TOOLTIP", "食事の状態を通知する場合はチェックしてください")
 ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TITLE", "通知タイミング[分]")
 ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TOOLTIP", "残り時間がこの時間未満になったら通知します")
+ZO_CreateStringId("LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TITLE", "ダンジョンにいる時のみ通知する")
+ZO_CreateStringId("LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TOOLTIP", "ダンジョンにいる時のみ、食事の状態を通知する場合はチェックしてください")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")
