@@ -1,7 +1,7 @@
 ﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food and Drink Reminder"
-local Version = "0.1.1"
+local Version = "0.2.0"
 local Author = "Lionas"
 
 local LAM2 = LibStub:GetLibrary("LibAddonMenu-2.0")
@@ -55,6 +55,22 @@ function LioFADRMenu.LoadLAM2Panel()
             setFunc = 
               function(value) 
                 LioFADR.savedVariables.notifyThresholdMins = value
+              end,
+        },
+        [4] = 
+        {
+            type = "checkbox",
+            name = GetString(LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TITLE),
+            tooltip = GetString(LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TOOLTIP),
+            default = LioFADR.savedVariables.onlyNotifyInDungeon,
+            getFunc = 
+              function() 
+                return LioFADR.savedVariables.onlyNotifyInDungeon
+              end,
+            setFunc = 
+              function(value)
+                LioFADR.clearTable(LioFADR.notifyFirst)
+                LioFADR.savedVariables.onlyNotifyInDungeon = value
               end,
         },
     }   
