@@ -12,7 +12,7 @@ LioFADR = {
     enable = true,              -- アドオン有効無効
     notifyThresholdMins = 3,  -- 通知する閾値(分)
     onlyNotifyInDungeon = false,  -- ダンジョンにいる時だけ通知する
-    isInDungeon = false,
+    isInDungeon = false,  -- 現在ダンジョンにいるかどうか
   },
 }
 
@@ -121,12 +121,11 @@ local function initializePrefs()
   LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, 1, nil,
     {
       enable = LioFADR.default.enable,
-      notifyThresholdMins = LioFADR.default.notifynotifyThresholdMins,
+      notifyThresholdMins = LioFADR.default.notifyThresholdMins,
       onlyNotifyInDungeon = LioFADR.default.onlyNotifyInDungeon,
       isInDungeon = LioFADR.default.isInDungeon,
     }
   )
-
 
 end
 
