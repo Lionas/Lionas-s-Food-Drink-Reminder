@@ -420,6 +420,33 @@ local function onUpdate()
 end
 
 
+-- 通知を有効にする
+function LioFADR:setEnable()
+
+    -- regist handler  
+    outputChat(GetString(LIO_FADR_ENABLE))
+    EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
+
+end
+
+
+-- 通知を無効にする
+function LioFADR:setDisableWithoutUnregister()
+
+    -- unregist handler  
+    outputChat(GetString(LIO_FADR_DISABLE))
+
+end
+
+function LioFADR:setDisable()
+
+    -- unregist handler  
+    LioFADR.setDisableWithoutUnregister()
+    EVENT_MANAGER:UnregisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME)
+
+end
+
+
 -- 有効無効スイッチ
 function toggleEnable()
 
@@ -427,13 +454,9 @@ function toggleEnable()
 
   -- addon start or not
   if(LioFADR.savedVariables.enable) then
-    -- regist handler  
-    outputChat(GetString(LIO_FADR_ENABLE))
-    EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
+    LioFADR.setEnable()
   else
-    -- unregist handler  
-    outputChat(GetString(LIO_FADR_DISABLE))
-    EVENT_MANAGER:UnregisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME)
+    LioFADR.setDisable()
   end
 
 end
@@ -450,11 +473,9 @@ local function onPlayerActivated()
 
   -- addon start or not
   if(LioFADR.savedVariables.enable) then
-    -- regist handler  
-    outputChat(GetString(LIO_FADR_ENABLE))
-    EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
+    LioFADR.setEnable()
   else
-    outputChat(GetString(LIO_FADR_DISABLE))
+    LioFADR.setDisableWithoutUnregister()
   end
 
 end

@@ -1,4 +1,4 @@
--- Lionas's Food & Drink Reminder
+﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food and Drink Reminder"
 local Version = "0.3.0"
@@ -37,6 +37,12 @@ function LioFADRMenu.LoadLAM2Panel()
             setFunc = 
               function(value) 
                 LioFADR.savedVariables.enable = value
+
+				if(value) then
+					LioFADR.setEnable()
+			    else
+                    LioFADR.setDisable()
+                end
               end,
         },
         [3] = 
