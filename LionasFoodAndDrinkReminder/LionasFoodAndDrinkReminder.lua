@@ -13,6 +13,7 @@ LioFADR = {
     notifyThresholdMins = 3,  -- 通知する閾値(分)
     onlyNotifyInDungeon = false,  -- ダンジョンにいる時だけ通知する
     isInDungeon = false,  -- 現在ダンジョンにいるかどうか
+    enableToChat = true,  -- チャット欄に通知する
   },
 }
 
@@ -23,6 +24,7 @@ local PLAYER_ACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player_Activate"
 local PLAYER_DEACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player_DeActivate"
 local UPDATE_INTERVAL_REGISTER_NAME = LioFADR.name .. "_Update"
 local SAVED_PREFS_NAME = LioFADR.name .. "_SavedPrefs"
+local SAVED_PREFS_VERSION = 1
 
 local UPDATE_INTERVAL_MSEC = 1000
 local HOUR_PER_SECS = 3600
@@ -118,23 +120,33 @@ end
 -- Initialize preferences
 local function initializePrefs()
 
-  LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, 1, nil,
+  LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil,
     {
       enable = LioFADR.default.enable,
       notifyThresholdMins = LioFADR.default.notifyThresholdMins,
       onlyNotifyInDungeon = LioFADR.default.onlyNotifyInDungeon,
       isInDungeon = LioFADR.default.isInDungeon,
+      enableToChat = LioFADR.default.enableToChat,
     }
   )
 
 end
 
 
+-- チャット欄への出力
+local function outputChat(message)
+
+  if(LioFADR.savedVariables.enableToChat) then
+    d(DMSG_HEADER .. message)
+  end
+
+end
+
 -- 通知
 local function notify(message, buffName, icon)
 
   -- チャット欄に通知
-  d(DMSG_HEADER .. message)
+  outputChat(message)
 
   -- Vanilla UIに通知
   CENTER_SCREEN_ANNOUNCE:AddMessage(999, CSA_EVENT_COMBINED_TEXT, SOUNDS.AVA_GATE_OPENED, message, buffName, icon, nil, nil, nil, nil, 4420)
@@ -413,13 +425,14 @@ function toggleEnable()
 
   LioFADR.savedVariables.enable = not LioFADR.savedVariables.enable
 
+  -- addon start or not
   if(LioFADR.savedVariables.enable) then
     -- regist handler  
-    d(zo_strformat(GetString(LIO_FADR_ENABLE), LioFADR.displayName))
+    outputChat(GetString(LIO_FADR_ENABLE))
     EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
   else
     -- unregist handler  
-    d(zo_strformat(GetString(LIO_FADR_DISABLE), LioFADR.displayName))
+    outputChat(GetString(LIO_FADR_DISABLE))
     EVENT_MANAGER:UnregisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME)
   end
 
@@ -435,12 +448,13 @@ local function onPlayerActivated()
   -- load Menu Settings
   LioFADRMenu.LoadLAM2Panel()
 
+  -- addon start or not
   if(LioFADR.savedVariables.enable) then
     -- regist handler  
-    d(zo_strformat(GetString(LIO_FADR_ENABLE), LioFADR.displayName))
+    outputChat(GetString(LIO_FADR_ENABLE))
     EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
   else
-    d(zo_strformat(GetString(LIO_FADR_DISABLE), LioFADR.displayName))
+    outputChat(GetString(LIO_FADR_DISABLE))
   end
 
 end
