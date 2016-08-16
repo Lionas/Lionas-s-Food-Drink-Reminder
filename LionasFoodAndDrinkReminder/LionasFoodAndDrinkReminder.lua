@@ -11,9 +11,11 @@ LioFADR = {
   default = {
     enable = true,              -- アドオン有効無効
     notifyThresholdMins = 3,  -- 通知する閾値(分)
-    onlyNotifyInDungeon = false,  -- ダンジョンにいる時だけ通知する
+    notifyInDungeon = true,  -- ダンジョンにいる時に通知する
     isInDungeon = false,  -- 現在ダンジョンにいるかどうか
     enableToChat = true,  -- チャット欄に通知する
+    notifyByZoneChanging = true, -- ゾーン変更時に通知する
+    isZoneChanged = false, -- ゾーン変更したかどうか
   },
 }
 
@@ -23,8 +25,9 @@ local ADD_ON_LOADED_REGISTER_NAME = LioFADR.name .. "_OnLoad"
 local PLAYER_ACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player_Activate"
 local PLAYER_DEACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player_DeActivate"
 local UPDATE_INTERVAL_REGISTER_NAME = LioFADR.name .. "_Update"
+local ZONE_CHANGED_REGISTER_NAME = LioFADR.name .. "_ZoneChanged"
 local SAVED_PREFS_NAME = LioFADR.name .. "_SavedPrefs"
-local SAVED_PREFS_VERSION = 1
+local SAVED_PREFS_VERSION = 2
 
 local UPDATE_INTERVAL_MSEC = 1000
 local HOUR_PER_SECS = 3600
@@ -124,9 +127,11 @@ local function initializePrefs()
     {
       enable = LioFADR.default.enable,
       notifyThresholdMins = LioFADR.default.notifyThresholdMins,
-      onlyNotifyInDungeon = LioFADR.default.onlyNotifyInDungeon,
+      notifyInDungeon = LioFADR.default.notifyInDungeon,
       isInDungeon = LioFADR.default.isInDungeon,
       enableToChat = LioFADR.default.enableToChat,
+      notifyByZoneChanging = LioFADR.default.notifyByZoneChanging,
+      isZoneChanged = LioFADR.default.isZoneChanged,    
     }
   )
 
@@ -400,18 +405,33 @@ end
 -- Cyclic check
 local function onUpdate()
 
+--d("onUpdate()"..GetGameTimeMilliseconds())
+
   -- ダンジョンを出入りしたら初回表示を有効にする
   if(IsUnitInDungeon(PLAYER_TAG) and (not LioFADR.savedVariables.isInDungeon)) then
-      clearTable(LioFADR.notifyFirst)
-      LioFADR.savedVariables.isInDungeon = true
+    
+    clearTable(LioFADR.notifyFirst)
+    LioFADR.savedVariables.isInDungeon = true
 
   elseif((not IsUnitInDungeon(PLAYER_TAG)) and (LioFADR.savedVariables.isInDungeon)) then
-      clearTable(LioFADR.notifyFirst)
-      LioFADR.savedVariables.isInDungeon = false
+    
+    clearTable(LioFADR.notifyFirst)
+    LioFADR.savedVariables.isInDungeon = false
   end
 
-  if((LioFADR.savedVariables.onlyNotifyInDungeon and IsUnitInDungeon(PLAYER_TAG)) or 
-     (not LioFADR.savedVariables.onlyNotifyInDungeon)) then
+  -- ゾーンを移動したら初回表示を有効にする
+  if(LioFADR.savedVariables.notifyByZoneChanging and LioFADR.savedVariables.isZoneChanged) then
+
+--d("onUpdate()--- zonechange")
+    
+    clearTable(LioFADR.notifyFirst)
+    LioFADR.savedVariables.isZoneChanged = false
+  
+  end
+
+  if((LioFADR.savedVariables.notifyInDungeon and LioFADR.savedVariables.isInDungeon) or -- ダンジョンで通知するが有効でダンジョン内にいる時
+     (not LioFADR.savedVariables.isInDungeon) -- ダンジョン内にいない時
+    ) then 
 
     scanBuffs()
 
@@ -423,7 +443,6 @@ end
 -- 通知を有効にする
 function LioFADR:setEnable()
 
-    -- regist handler  
     outputChat(GetString(LIO_FADR_ENABLE))
     EVENT_MANAGER:RegisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME, UPDATE_INTERVAL_MSEC, onUpdate)
 
@@ -433,14 +452,12 @@ end
 -- 通知を無効にする
 function LioFADR:setDisableWithoutUnregister()
 
-    -- unregist handler  
     outputChat(GetString(LIO_FADR_DISABLE))
 
 end
 
 function LioFADR:setDisable()
 
-    -- unregist handler  
     LioFADR.setDisableWithoutUnregister()
     EVENT_MANAGER:UnregisterForUpdate(UPDATE_INTERVAL_REGISTER_NAME)
 
@@ -459,6 +476,16 @@ function toggleEnable()
     LioFADR.setDisable()
   end
 
+end
+
+
+-- zone changed
+function LioFADR:onZoneChanged()
+  
+--d("onZoneChanged()")  
+  
+  LioFADR.savedVariables.isZoneChanged = true
+  
 end
 
 
@@ -493,6 +520,7 @@ local function onLoad(event, addon)
 
   -- regist & unregist handler
   EVENT_MANAGER:RegisterForEvent(PLAYER_ACTIVATED_REGISTER_NAME, EVENT_PLAYER_ACTIVATED, onPlayerActivated)  
+  EVENT_MANAGER:RegisterForEvent(ZONE_CHANGED_REGISTER_NAME, EVENT_ZONE_CHANGED, LioFADR.onZoneChanged)  
   EVENT_MANAGER:UnregisterForEvent(ADD_ON_LOADED_REGISTER_NAME, EVENT_ADD_ON_LOADED)
 
 end
