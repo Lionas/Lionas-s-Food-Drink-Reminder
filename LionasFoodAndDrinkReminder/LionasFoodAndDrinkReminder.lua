@@ -16,6 +16,8 @@ LioFADR = {
     enableToChat = true,  -- チャット欄に通知する
     notifyByZoneChanging = true, -- ゾーン変更時に通知する
     isZoneChanged = false, -- ゾーン変更したかどうか
+    cooldownSec = 60, -- クールダウン時間(秒)
+    lastNotifyTime = 0, -- 最後に通知した時間
   },
 }
 
@@ -131,7 +133,9 @@ local function initializePrefs()
       isInDungeon = LioFADR.default.isInDungeon,
       enableToChat = LioFADR.default.enableToChat,
       notifyByZoneChanging = LioFADR.default.notifyByZoneChanging,
-      isZoneChanged = LioFADR.default.isZoneChanged,    
+      isZoneChanged = LioFADR.default.isZoneChanged,
+      cooldownSec = LioFADR.default.cooldownSec,
+      lastNotifyTime = LioFADR.default.lastNotifyTime,
     }
   )
 
@@ -156,6 +160,9 @@ local function notify(message, buffName, icon)
   -- Vanilla UIに通知
   CENTER_SCREEN_ANNOUNCE:AddMessage(999, CSA_EVENT_COMBINED_TEXT, SOUNDS.AVA_GATE_OPENED, message, buffName, icon, nil, nil, nil, nil, 4420)
 
+  -- 通知時間を保存
+  LioFADR.savedVariables.lastNotifyTime = GetTimeStamp()
+  
 end
 
 
@@ -401,11 +408,18 @@ local function scanBuffs()
 
 end
 
+-- Cooldown check
+local function isCooldown()
+  
+  return (GetTimeStamp() < LioFADR.savedVariables.lastNotifyTime + LioFADR.savedVariables.cooldownSec)
+  
+end
+
 
 -- Cyclic check
 local function onUpdate()
 
---d("onUpdate()"..GetGameTimeMilliseconds())
+--d("onUpdate()"..GetTimeStamp())
 
   -- ダンジョンを出入りしたら初回表示を有効にする
   if(IsUnitInDungeon(PLAYER_TAG) and (not LioFADR.savedVariables.isInDungeon)) then
@@ -422,9 +436,10 @@ local function onUpdate()
   -- ゾーンを移動したら初回表示を有効にする
   if(LioFADR.savedVariables.notifyByZoneChanging and LioFADR.savedVariables.isZoneChanged) then
 
---d("onUpdate()--- zonechange")
+    if(not isCooldown()) then
+      clearTable(LioFADR.notifyFirst)
+    end
     
-    clearTable(LioFADR.notifyFirst)
     LioFADR.savedVariables.isZoneChanged = false
   
   end

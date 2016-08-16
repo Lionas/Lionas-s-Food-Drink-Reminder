@@ -26,6 +26,11 @@ ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_TO_CHAT_TITLE", "Notify to chat")
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_TO_CHAT_TOOLTIP", "If you enable notifying of the state of the meal to chat, please check out.")
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE", "Notify by zone changing")
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "If you enable notifying of the state of the meal by zone changing, please check out.")
+ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "Notification prohibition time[sec(s)]")
+ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "Notification does not occur since the last notification to this period of time has elapsed.")
+
+ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "General")
+ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Zone Change")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Enable/Disable Notify")

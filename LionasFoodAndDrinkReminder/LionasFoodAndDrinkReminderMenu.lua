@@ -1,7 +1,7 @@
 ﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food and Drink Reminder"
-local Version = "0.4.0"
+local Version = "0.5.0"
 local Author = "Lionas"
 
 local LAM2 = LibStub:GetLibrary("LibAddonMenu-2.0")
@@ -24,7 +24,11 @@ function LioFADRMenu.LoadLAM2Panel()
             type = "description",
             text = GetString(LIO_FADR_DESCRIPTION),
         },
-        [2] = 
+        [2] = {
+			      type = "header",
+			      name = GetString(LIO_FADR_TOP_SETTING_HEADER)
+        },
+        [3] = 
         {
             type = "checkbox",
             name = GetString(LIO_FADR_ENABLE_TITLE),
@@ -44,7 +48,7 @@ function LioFADRMenu.LoadLAM2Panel()
                 end
               end,
         },
-        [3] = 
+        [4] = 
         {
             type = "slider",
             name = GetString(LIO_FADR_NOTIFY_THRESHOLD_TITLE),
@@ -62,7 +66,7 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.notifyThresholdMins = value
               end,
         },
-        [4] = 
+        [5] = 
         {
             type = "checkbox",
             name = GetString(LIO_FADR_NOTIFY_IN_DUNGEON_TITLE),
@@ -78,7 +82,7 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.notifyInDungeon = value
               end,
         },
-        [5] =
+        [6] =
         {
             type = "checkbox",
             name = GetString(LIO_FADR_ENABLE_NOTIFY_TO_CHAT_TITLE),
@@ -93,7 +97,11 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.enableToChat = value
             end,
         },
-        [6] =
+        [7] = {
+			      type = "header",
+			      name = GetString(LIO_FADR_ZONE_SETTING_HEADER)
+        },
+        [8] =
         {
             type = "checkbox",
             name = GetString(LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE),
@@ -107,6 +115,24 @@ function LioFADRMenu.LoadLAM2Panel()
             function(value)
                 LioFADR.savedVariables.notifyByZoneChanging = value
             end,
+        },
+        [9] = 
+        {
+            type = "slider",
+            name = GetString(LIO_FADR_NOTIFY_COOLDOWN_TITLE),
+            tooltip = GetString(LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP),
+            min = 0,
+            max = 120,
+            step = 5,
+            default = 60,
+            getFunc = 
+              function() 
+                return LioFADR.savedVariables.cooldownSec
+              end,
+            setFunc = 
+              function(value) 
+                LioFADR.savedVariables.cooldownSec = value
+              end,
         },
     }
     
