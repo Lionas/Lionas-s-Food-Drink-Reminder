@@ -1,7 +1,7 @@
 ﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food and Drink Reminder"
-local Version = "0.3.0"
+local Version = "0.4.0"
 local Author = "Lionas"
 
 local LAM2 = LibStub:GetLibrary("LibAddonMenu-2.0")
@@ -37,11 +37,10 @@ function LioFADRMenu.LoadLAM2Panel()
             setFunc = 
               function(value) 
                 LioFADR.savedVariables.enable = value
-
-				if(value) then
-					LioFADR.setEnable()
-			    else
-                    LioFADR.setDisable()
+				        if(value) then
+					        LioFADR.setEnable()
+			          else
+                  LioFADR.setDisable()
                 end
               end,
         },
@@ -66,17 +65,17 @@ function LioFADRMenu.LoadLAM2Panel()
         [4] = 
         {
             type = "checkbox",
-            name = GetString(LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TITLE),
-            tooltip = GetString(LIO_FADR_NOTIFY_ONLY_IN_DUNGEON_TOOLTIP),
-            default = LioFADR.savedVariables.onlyNotifyInDungeon,
+            name = GetString(LIO_FADR_NOTIFY_IN_DUNGEON_TITLE),
+            tooltip = GetString(LIO_FADR_NOTIFY_IN_DUNGEON_TOOLTIP),
+            default = LioFADR.savedVariables.notifyInDungeon,
             getFunc = 
               function() 
-                return LioFADR.savedVariables.onlyNotifyInDungeon
+                return LioFADR.savedVariables.notifyInDungeon
               end,
             setFunc = 
               function(value)
                 LioFADR.clearTable(LioFADR.notifyFirst)
-                LioFADR.savedVariables.onlyNotifyInDungeon = value
+                LioFADR.savedVariables.notifyInDungeon = value
               end,
         },
         [5] =
@@ -92,6 +91,21 @@ function LioFADRMenu.LoadLAM2Panel()
             setFunc =
             function(value)
                 LioFADR.savedVariables.enableToChat = value
+            end,
+        },
+        [6] =
+        {
+            type = "checkbox",
+            name = GetString(LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE),
+            tooltip = GetString(LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP),
+            default = LioFADR.savedVariables.notifyByZoneChanging,
+            getFunc =
+            function()
+                return LioFADR.savedVariables.notifyByZoneChanging
+            end,
+            setFunc =
+            function(value)
+                LioFADR.savedVariables.notifyByZoneChanging = value
             end,
         },
     }
