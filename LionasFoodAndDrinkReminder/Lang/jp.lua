@@ -29,8 +29,14 @@ ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "ゾーン移動�
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "通知禁止時間[秒]")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "前回の通知からこの時間が経過するまでは次の通知は行われません")
 
-ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "全体設定")
+ZO_CreateStringId("LIO_FADR_TOP_SETTINGHEADER", "全体設定")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "ゾーン移動")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")
+
+-- exclude　buffs
+ZO_CreateStringId("LIO_FADR_EXCLUDE_1", "アイレイドの体力ボーナス")
+ZO_CreateStringId("LIO_FADR_EXCLUDE_2", "サージ")
+ZO_CreateStringId("LIO_FADR_EXCLUDE_3", "クリティカルサージ")
+ZO_CreateStringId("LIO_FADR_EXCLUDE_4", "パワーサージ")

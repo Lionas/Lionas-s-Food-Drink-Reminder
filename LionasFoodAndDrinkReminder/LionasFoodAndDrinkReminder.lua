@@ -47,6 +47,13 @@ local ATTENTION_COLOR = "ff3DA5"
 -- チャットメッセージ
 local DMSG_HEADER = "[" .. LioFADR.displayName .. "] "
 
+-- 対象外のバフの名前
+local excludeBuffNames = {
+    [1] = GetString(LIO_FADR_EXCLUDE_1),
+    [2] = GetString(LIO_FADR_EXCLUDE_2),
+    [3] = GetString(LIO_FADR_EXCLUDE_3),
+    [4] = GetString(LIO_FADR_EXCLUDE_4),
+  }
 
 -- テーブルの長さを取得する
 function getTableLength(T)
@@ -267,13 +274,14 @@ end
 
 
 -- 有効なバフかどうかのチェック
-local function getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)
+local function getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff, buffName)
 
   return (effectType == BUFF_EFFECT_TYPE_BUFF) and 
   (statusEffectType == STATUS_EFFECT_TYPE_NONE) and 
   ((timeEnding - timeStarted) > 0) and
   (isContain(abilityType, { ABILITY_TYPE_NONE, ABILITY_TYPE_BONUS })) and
-  canClickOff
+  canClickOff and
+  (not isContain(buffName, excludeBuffNames))
 
 end
 
@@ -369,7 +377,9 @@ local function scanBuffs()
     canClickOff = GetUnitBuffInfo(PLAYER_TAG, i)
 
     -- 有効なバフかどうかのチェック
-    if(getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)) then
+    if(getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff, buffName)) then
+
+d(buffName)
 
       -- Expired通知の削除
       if(isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
