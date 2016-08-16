@@ -1,7 +1,7 @@
 
-## Title: Lionas's Food and Drink Reminder v0.4.0
+## Title: Lionas's Food and Drink Reminder v0.5.0
 ## APIVersion: 100016
-## Version: 0.4.0
+## Version: 0.5.0
 ## Author: Lionas
 ## Description: Notify for food and drink when you entered in dungeon and expired.
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0
