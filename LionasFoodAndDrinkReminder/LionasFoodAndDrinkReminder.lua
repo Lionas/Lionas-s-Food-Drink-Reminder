@@ -47,14 +47,6 @@ local ATTENTION_COLOR = "ff3DA5"
 -- チャットメッセージ
 local DMSG_HEADER = "[" .. LioFADR.displayName .. "] "
 
--- 対象外のバフの名前
-local excludeBuffNames = {
-    [1] = GetString(LIO_FADR_EXCLUDE_1),
-    [2] = GetString(LIO_FADR_EXCLUDE_2),
-    [3] = GetString(LIO_FADR_EXCLUDE_3),
-    [4] = GetString(LIO_FADR_EXCLUDE_4),
-  }
-
 -- テーブルの長さを取得する
 function getTableLength(T)
 
@@ -273,16 +265,52 @@ local function notifyRemainTime(remainSec, abilityId)
 end
 
 
--- 有効なバフかどうかのチェック
-local function getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff, buffName)
-
-  return (effectType == BUFF_EFFECT_TYPE_BUFF) and 
-  (statusEffectType == STATUS_EFFECT_TYPE_NONE) and 
-  ((timeEnding - timeStarted) > 0) and
-  (isContain(abilityType, { ABILITY_TYPE_NONE, ABILITY_TYPE_BONUS })) and
-  canClickOff and
-  (not isContain(buffName, excludeBuffNames))
-
+-- 有効なバフかどうかを判定
+local function isEnableBuff(abilityId)
+    
+    local FODD_BUFF_NONE = 0
+    local FODD_BUFF_MAX_HEALTH = 1
+    local FODD_BUFF_MAX_MAGICKA = 2
+    local FODD_BUFF_MAX_STAMINA = 4
+    local FODD_BUFF_REGEN_HEALTH = 8
+    local FODD_BUFF_REGEN_MAGICKA = 16
+    local FODD_BUFF_REGEN_STAMINA = 32
+    local FODD_BUFF_MAX_HEALTH_MAGICKA = FODD_BUFF_MAX_HEALTH + FODD_BUFF_MAX_MAGICKA
+    local FODD_BUFF_MAX_HEALTH_STAMINA = FODD_BUFF_MAX_HEALTH + FODD_BUFF_MAX_STAMINA
+    local FODD_BUFF_MAX_MAGICKA_STAMINA = FODD_BUFF_MAX_MAGICKA + FODD_BUFF_MAX_STAMINA
+    local FODD_BUFF_REGEN_HEALTH_MAGICKA = FODD_BUFF_REGEN_HEALTH + FODD_BUFF_REGEN_MAGICKA
+    local FODD_BUFF_REGEN_HEALTH_STAMINA = FODD_BUFF_REGEN_HEALTH + FODD_BUFF_REGEN_STAMINA
+    local FODD_BUFF_REGEN_MAGICKA_STAMINA = FODD_BUFF_REGEN_MAGICKA + FODD_BUFF_REGEN_STAMINA
+    local FODD_BUFF_MAX_ALL = FODD_BUFF_MAX_HEALTH + FODD_BUFF_MAX_MAGICKA + FODD_BUFF_MAX_STAMINA
+    local FODD_BUFF_REGEN_ALL = FODD_BUFF_REGEN_HEALTH + FODD_BUFF_REGEN_MAGICKA + FODD_BUFF_REGEN_STAMINA
+    local FODD_BUFF_MAX_HEALTH_REGEN_HEALTH = FODD_BUFF_MAX_HEALTH + FODD_BUFF_REGEN_HEALTH
+    local FODD_BUFF_MAX_HEALTH_REGEN_MAGICKA = FODD_BUFF_MAX_HEALTH + FODD_BUFF_REGEN_MAGICKA
+    local FODD_BUFF_MAX_HEALTH_REGEN_STAMINA = FODD_BUFF_MAX_HEALTH + FODD_BUFF_REGEN_STAMINA
+    local FODD_BUFF_MAX_HEALTH_REGEN_ALL = FODD_BUFF_MAX_HEALTH + FODD_BUFF_REGEN_HEALTH + FODD_BUFF_REGEN_MAGICKA + FODD_BUFF_REGEN_STAMINA
+    
+    local isFoodBuff = {
+        [61259] = FODD_BUFF_MAX_HEALTH,
+        [61260] = FODD_BUFF_MAX_MAGICKA,
+        [61261] = FODD_BUFF_MAX_STAMINA,
+        [61322] = FODD_BUFF_REGEN_HEALTH,
+        [61325] = FODD_BUFF_REGEN_MAGICKA,
+        [61328] = FODD_BUFF_REGEN_STAMINA,
+        [61257] = FODD_BUFF_MAX_HEALTH_MAGICKA,
+        [61255] = FODD_BUFF_MAX_HEALTH_STAMINA,
+        [61294] = FODD_BUFF_MAX_MAGICKA_STAMINA,
+        [72816] = FODD_BUFF_REGEN_HEALTH_MAGICKA,
+        [61340] = FODD_BUFF_REGEN_HEALTH_STAMINA,
+        [61345] = FODD_BUFF_REGEN_MAGICKA_STAMINA,
+        [61218] = FODD_BUFF_MAX_ALL,
+        [61350] = FODD_BUFF_REGEN_ALL,
+        [72822] = FODD_BUFF_MAX_HEALTH_REGEN_HEALTH,
+        [72816] = FODD_BUFF_MAX_HEALTH_REGEN_MAGICKA,
+        [72819] = FODD_BUFF_MAX_HEALTH_REGEN_STAMINA,
+        [72824] = FODD_BUFF_MAX_HEALTH_REGEN_ALL,
+    }
+    
+    return isContain(abilityId, isFoodBuff)
+        
 end
 
 
@@ -377,7 +405,7 @@ local function scanBuffs()
     canClickOff = GetUnitBuffInfo(PLAYER_TAG, i)
 
     -- 有効なバフかどうかのチェック
-    if(getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff, buffName)) then
+    if(isEnableBuff(abilityId)) then
 
 d(buffName)
 

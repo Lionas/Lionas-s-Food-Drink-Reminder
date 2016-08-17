@@ -34,9 +34,3 @@ ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Zone ändern")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
-
--- exclude buffs (must exact effect name!)
-ZO_CreateStringId("LIO_FADR_EXCLUDE_1", "Ayleidensegen^m") -- exact ?(Ayleid Health Bonus)
-ZO_CreateStringId("LIO_FADR_EXCLUDE_2", "Woge^f") -- exact?(Surge)
-ZO_CreateStringId("LIO_FADR_EXCLUDE_3", "kritische Woge^f") -- exact?(Critical Surge)
-ZO_CreateStringId("LIO_FADR_EXCLUDE_4", "power Woge^f") -- exact?(Power Surge)

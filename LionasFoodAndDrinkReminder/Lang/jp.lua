@@ -34,9 +34,3 @@ ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "ゾーン移動")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")
-
--- exclude　buffs
-ZO_CreateStringId("LIO_FADR_EXCLUDE_1", "アイレイドの体力ボーナス")
-ZO_CreateStringId("LIO_FADR_EXCLUDE_2", "サージ")
-ZO_CreateStringId("LIO_FADR_EXCLUDE_3", "クリティカルサージ")
-ZO_CreateStringId("LIO_FADR_EXCLUDE_4", "パワーサージ")
