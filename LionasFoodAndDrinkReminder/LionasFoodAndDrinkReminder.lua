@@ -60,6 +60,7 @@ function getTableLength(T)
 
 end
 
+
 -- テーブルに指定の要素が含まれているかどうか  
 local function isContain(element, tbl)
 
@@ -70,6 +71,26 @@ local function isContain(element, tbl)
   for _, id in pairs(tbl) do
 
     if( id == element ) then
+      return true
+    end
+
+  end
+
+  return false
+
+end
+
+
+-- テーブルに指定のkeyが含まれているかどうか  
+local function isContainKey(key, tbl)
+
+  if table == nil or getTableLength(tbl) == 0 then
+    return false
+  end
+
+  for k, v in pairs(tbl) do
+
+    if( k == key ) then
       return true
     end
 
@@ -266,7 +287,7 @@ end
 
 
 -- 有効なバフかどうかを判定
-local function isEnableBuff(abilityId)
+local function getFoodTypeBonus()
     
     local FODD_BUFF_NONE = 0
     local FODD_BUFF_MAX_HEALTH = 1
@@ -309,7 +330,7 @@ local function isEnableBuff(abilityId)
         [72824] = FODD_BUFF_MAX_HEALTH_REGEN_ALL,
     }
     
-    return isContain(abilityId, isFoodBuff)
+    return isFoodBuff
         
 end
 
@@ -405,7 +426,7 @@ local function scanBuffs()
     canClickOff = GetUnitBuffInfo(PLAYER_TAG, i)
 
     -- 有効なバフかどうかのチェック
-    if(isEnableBuff(abilityId)) then
+    if(isContainKey(abilityId, getFoodTypeBonus())) then
 
 d(buffName)
 
