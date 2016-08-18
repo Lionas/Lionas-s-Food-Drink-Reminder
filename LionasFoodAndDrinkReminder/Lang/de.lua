@@ -28,9 +28,12 @@ ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE", "Erinnerung nach Zon
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "Nach jedem Zonenwechsel bekommst du eine Erinnerung über den Zustand deiner Mahlzeit.")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "Zeit zwischen Meldungen [sek]")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "Falls Mitteilungen in dieser Zeit vorkommen sollten, werden diese nicht wiedergegeben.")
+ZO_CreateStringId("LIO_FADR_DEBUG_TITLE", "Ermöglichen Sie Fehlersuchprogramm-Produktion")
+ZO_CreateStringId("LIO_FADR_DEBUG_TOOLTIP", "Wenn Probleme vorgekommen werden, überprüfen Sie bitte für den Bericht.")
 
 ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "General")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Zone ändern")
+ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "für das Fehlersuchprogramm")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
