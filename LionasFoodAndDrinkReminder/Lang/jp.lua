@@ -28,9 +28,12 @@ ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE", "ゾーン移動時�
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "ゾーン移動した（旅の祠・特定のエリアへ入った、または、出た）時に食事の状態を通知する場合はチェックしてください")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "通知禁止時間[秒]")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "前回の通知からこの時間が経過するまでは次の通知は行われません")
+ZO_CreateStringId("LIO_FADR_DEBUG_TITLE", "不具合時の出力を行う")
+ZO_CreateStringId("LIO_FADR_DEBUG_TOOLTIP", "不具合が発生した場合、報告のための情報を取得する場合にチェックしてください")
 
-ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "全体設定")
+ZO_CreateStringId("LIO_FADR_TOP_SETTINGHEADER", "全体設定")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "ゾーン移動")
+ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "デバッグ用")
 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")

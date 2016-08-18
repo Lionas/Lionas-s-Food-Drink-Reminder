@@ -19,6 +19,7 @@ LioFADR = {
     cooldownSec = 60, -- クールダウン時間(秒)
     lastNotifyTime = 0, -- 最後に通知した時間
   },
+  debug = false, -- デバッグ出力用
 }
 
 local PLAYER_TAG = "player"
@@ -47,77 +48,13 @@ local ATTENTION_COLOR = "ff3DA5"
 -- チャットメッセージ
 local DMSG_HEADER = "[" .. LioFADR.displayName .. "] "
 
-
--- テーブルの長さを取得する
-function getTableLength(T)
-
-  local count = 0
-
-  for _ in pairs(T) do
-    count = count + 1 
-  end
-
-  return count
-
-end
-
--- テーブルに指定の要素が含まれているかどうか  
-local function isContain(element, tbl)
-
-  if table == nil or getTableLength(tbl) == 0 then
-    return false
-  end
-
-  for _, id in pairs(tbl) do
-
-    if( id == element ) then
-      return true
-    end
-
-  end
-
-  return false
-
-end
-
-
--- Clear table
-function clearTable(tbl)
-
-  if(tbl ~= nil and (getTableLength(tbl) ~= 0)) then
-
-    for i, v in pairs(tbl) do
-      tbl[i] = nil
-    end
-
-  end
-
-end
-
-function LioFADR:clearTable(tbl)
-
-  clearTable(tbl)
-
-end
-
-
--- Insert table
-function insertTable(tbl, element)
-  
-  if(not isContain(element, tbl)) then
-    table.insert(tbl, element)
-  end
-  
-end
-
-
 -- Clear tables
 function LioFADR:clearTables()
 
-  clearTable(LioFADR.notifyFirst)
-  clearTable(LioFADR.notifyRemain)
-  clearTable(LioFADR.notifyClosed)
-  clearTable(LioFADR.notifyExpired)
+  LioFADRCommon.clearTable(LioFADR.notifyFirst)
+  LioFADRCommon.clearTable(LioFADR.notifyRemain)
+  LioFADRCommon.clearTable(LioFADR.notifyClosed)
+  LioFADRCommon.clearTable(LioFADR.notifyExpired)
 
 end
 
@@ -136,6 +73,7 @@ local function initializePrefs()
       isZoneChanged = LioFADR.default.isZoneChanged,
       cooldownSec = LioFADR.default.cooldownSec,
       lastNotifyTime = LioFADR.default.lastNotifyTime,
+      debug = LioFADR.default.debug,
     }
   )
 
@@ -166,29 +104,6 @@ local function notify(message, buffName, icon)
 end
 
 
--- 通知済みテーブルから削除
-local function removeFromTable(table, abilityId)
-
-  local i = 1
-  while (i <= #table) do
-    if(table[i] == abilityId) then
-      table[i] = nil
-    else
-      i = i + 1
-    end
-  end  
-
-end
-
-
--- 色設定
-local function getColoredString(color, str)
-
-  return "|c" .. color .. str .. "|r"
-
-end
-
-
 -- 残り時間に応じて通知するメッセージを変える
 local function buildNotifyMessage(remainSec, buffName)
 
@@ -199,7 +114,7 @@ local function buildNotifyMessage(remainSec, buffName)
     local hours = math.floor(remainSec / HOUR_PER_SECS)
     local mins = math.floor((remainSec % HOUR_PER_SECS) / MIN_PER_SECS)
 
-    return zo_strformat(GetString(LIO_FADR_NEAR_EXPIRE_HOUR_MIN), getColoredString(TIME_COLOR, hours), getColoredString(TIME_COLOR, mins))
+    return zo_strformat(GetString(LIO_FADR_NEAR_EXPIRE_HOUR_MIN), LioFADRCommon.getColoredString(TIME_COLOR, hours), LioFADRCommon.getColoredString(TIME_COLOR, mins))
 
   end
 
@@ -208,17 +123,17 @@ local function buildNotifyMessage(remainSec, buffName)
 
     -- メッセージの作成
     local mins = math.floor(remainSec / MIN_PER_SECS)
-    return zo_strformat(GetString(LIO_FADR_NEAR_EXPIRE_MIN), getColoredString(TIME_COLOR, mins))
+    return zo_strformat(GetString(LIO_FADR_NEAR_EXPIRE_MIN), LioFADRCommon.getColoredString(TIME_COLOR, mins))
 
   end
 
   if (remainSec > 0) and (remainSec < MIN_PER_SECS) then
     -- 1分未満の効果がある時は、「食事の効果がまもなく消えます」
-    return getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_NEAR_EXPIRE_CLOSED))
+    return LioFADRCommon.getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_NEAR_EXPIRE_CLOSED))
 
   else
     -- 食事の効果が切れました！
-    return getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_NEAR_EXPIRED))
+    return LioFADRCommon.getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_NEAR_EXPIRED))
 
   end
 
@@ -231,49 +146,37 @@ local function notifyRemainTime(remainSec, abilityId)
   local buffName = GetAbilityName(abilityId)
   local buffIcon = GetAbilityIcon(abilityId)
 
-  if (remainSec <= LioFADR.savedVariables.notifyThresholdMins * 60) and (not isContain(abilityId, LioFADR.notifyRemain)) then
+  if (remainSec <= LioFADR.savedVariables.notifyThresholdMins * 60) and (not LioFADRCommon.isContain(abilityId, LioFADR.notifyRemain)) then
     -- 残り時間が指定時間以下になったら通知する
 
-    insertTable(LioFADR.notifyFirst, abilityId)
+    LioFADRCommon.insertTable(LioFADR.notifyFirst, abilityId)
 
     -- 通知
     notify(buildNotifyMessage(remainSec, buffName), buffName, buffIcon)
 
     -- 通知済みテーブルに追加と削除
-    insertTable(LioFADR.notifyRemain, abilityId)
+    LioFADRCommon.insertTable(LioFADR.notifyRemain, abilityId)
 
-  elseif (remainSec < THRESHOLD_EXPIRE_SECS) and (not isContain(abilityId, LioFADR.notifyClosed)) then
+  elseif (remainSec < THRESHOLD_EXPIRE_SECS) and (not LioFADRCommon.isContain(abilityId, LioFADR.notifyClosed)) then
     -- 指定時間を切ったら最終通知
 
-    insertTable(LioFADR.notifyFirst, abilityId)
+    LioFADRCommon.insertTable(LioFADR.notifyFirst, abilityId)
 
     -- 通知
     notify(buildNotifyMessage(remainSec, buffName), buffName, buffIcon)
 
     -- 通知済みテーブルに追加と削除
-    insertTable(LioFADR.notifyClosed, abilityId)
+    LioFADRCommon.insertTable(LioFADR.notifyClosed, abilityId)
 
-  elseif (getTableLength(LioFADR.notifyFirst) == 0) then
+  elseif (LioFADRCommon.getTableLength(LioFADR.notifyFirst) == 0) then
     -- 最初に必ず通知
 
-    insertTable(LioFADR.notifyFirst, abilityId)
+    LioFADRCommon.insertTable(LioFADR.notifyFirst, abilityId)
 
     -- 通知
     notify(buildNotifyMessage(remainSec, buffName), buffName, buffIcon)
 
   end
-
-end
-
-
--- 有効なバフかどうかのチェック
-local function getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)
-
-  return (effectType == BUFF_EFFECT_TYPE_BUFF) and 
-  (statusEffectType == STATUS_EFFECT_TYPE_NONE) and 
-  ((timeEnding - timeStarted) > 0) and
-  (isContain(abilityType, { ABILITY_TYPE_NONE, ABILITY_TYPE_BONUS })) and
-  canClickOff
 
 end
 
@@ -282,12 +185,12 @@ end
 local function extendRemainTime(remainSec, abilityId)
 
   local notifyThresholdSecs = LioFADR.savedVariables.notifyThresholdMins * 60
-  if (remainSec >= notifyThresholdSecs) and isContain(abilityId, LioFADR.notifyRemain) then
-    removeFromTable(LioFADR.notifyRemain, abilityId)
+  if (remainSec >= notifyThresholdSecs) and LioFADRCommon.isContain(abilityId, LioFADR.notifyRemain) then
+    LioFADRCommon.removeFromTable(LioFADR.notifyRemain, abilityId)
   end
 
-  if (remainSec >= notifyThresholdSecs) and isContain(abilityId, LioFADR.notifyClosed) then
-    removeFromTable(LioFADR.notifyClosed, abilityId)
+  if (remainSec >= notifyThresholdSecs) and LioFADRCommon.isContain(abilityId, LioFADR.notifyClosed) then
+    LioFADRCommon.removeFromTable(LioFADR.notifyClosed, abilityId)
   end
 
 end
@@ -301,8 +204,8 @@ local function notifyExpiredBuffs(currentBuffs)
   for _, id in pairs(LioFADR.notifyFirst) do
 
     -- 現在のバフ一覧に入っていないものはもうバフが切れているので、期限切れ一覧に追加
-    if (not isContain(id, currentBuffs)) and (not isContain(id, expiredBuffs)) then
-      insertTable(expiredBuffs, id)
+    if (not LioFADRCommon.isContain(id, currentBuffs)) and (not LioFADRCommon.isContain(id, expiredBuffs)) then
+      LioFADRCommon.insertTable(expiredBuffs, id)
     end
 
   end
@@ -310,8 +213,8 @@ local function notifyExpiredBuffs(currentBuffs)
   for _, id in pairs(LioFADR.notifyRemain) do
 
     -- 現在のバフ一覧に入っていないものはもうバフが切れているので、期限切れ一覧に追加
-    if (not isContain(id, currentBuffs)) and (not isContain(id, expiredBuffs)) then
-      insertTable(expiredBuffs, id)
+    if (not LioFADRCommon.isContain(id, currentBuffs)) and (not LioFADRCommon.isContain(id, expiredBuffs)) then
+      LioFADRCommon.insertTable(expiredBuffs, id)
     end
 
   end
@@ -319,8 +222,8 @@ local function notifyExpiredBuffs(currentBuffs)
   for _, id in pairs(LioFADR.notifyClosed) do
 
     -- 現在のバフ一覧に入っていないものはもうバフが切れているので、期限切れ一覧に追加
-    if (not isContain(id, currentBuffs)) and (not isContain(id, expiredBuffs)) then
-      insertTable(expiredBuffs, id)
+    if (not LioFADRCommon.isContain(id, currentBuffs)) and (not LioFADRCommon.isContain(id, expiredBuffs)) then
+      LioFADRCommon.insertTable(expiredBuffs, id)
     end
 
   end
@@ -329,9 +232,9 @@ local function notifyExpiredBuffs(currentBuffs)
   for _, id in pairs(expiredBuffs) do
 
     -- バフ一覧から削除
-    removeFromTable(LioFADR.notifyFirst, id)
-    removeFromTable(LioFADR.notifyRemain, id)
-    removeFromTable(LioFADR.notifyClosed, id)
+    LioFADRCommon.removeFromTable(LioFADR.notifyFirst, id)
+    LioFADRCommon.removeFromTable(LioFADR.notifyRemain, id)
+    LioFADRCommon.removeFromTable(LioFADR.notifyClosed, id)
 
     -- 通知
     local buffName = GetAbilityName(id)
@@ -351,6 +254,11 @@ local function scanBuffs()
   local currentBuffs = {}
   local notifyIntervalSec = 1
 
+  -- 不具合報告用
+  if(LioFADR.savedVariables.debug) then
+    d(DMSG_HEADER .. "(debug) Time = "..GetTimeStamp())
+  end
+
   -- 現在のバフ数ループ
   for i = 1, buffsNum do
 
@@ -368,16 +276,21 @@ local function scanBuffs()
     abilityId, 
     canClickOff = GetUnitBuffInfo(PLAYER_TAG, i)
 
+    -- 不具合報告用
+    if(LioFADR.savedVariables.debug) then
+      d(DMSG_HEADER .. "(debug) AbilityId = "..abilityId..", Buff's name = "..buffName)
+    end
+
     -- 有効なバフかどうかのチェック
-    if(getEnableBuff(effectType, statusEffectType, timeStarted, timeEnding, abilityType, canClickOff)) then
+    if(LioFADRFoods.isContain(abilityId)) then
 
       -- Expired通知の削除
-      if(isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
-        removeFromTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
+      if(LioFADRCommon.isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
+        LioFADRCommon.removeFromTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
       end
 
       -- 現在のバフリストに追加
-      insertTable(currentBuffs, abilityId)
+      LioFADRCommon.insertTable(currentBuffs, abilityId)
 
       -- 残り時間の算出
       local remainSec = math.floor(timeEnding - (GetGameTimeMilliseconds() / 1000))
@@ -396,13 +309,15 @@ local function scanBuffs()
   notifyExpiredBuffs(currentBuffs)
 
   -- 効果がない時で、戦闘中でない場合、「食事の効果を発動してください」のメッセージをVanilla UI上で表示する
-  if (getTableLength(currentBuffs) == 0) and (not IsUnitInCombat(PLAYER_TAG)) and (not isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
+  if (LioFADRCommon.getTableLength(currentBuffs) == 0) and (not IsUnitInCombat(PLAYER_TAG)) and (not LioFADRCommon.isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
 
     -- 通知
-    notify(getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_SHOULD_EAT_DRINK)), nil, nil)
+    local message = GetString(LIO_FADR_SHOULD_EAT_DRINK)
+    
+    notify(LioFADRCommon.getColoredString(ATTENTION_COLOR, message), nil, nil)
 
     -- 通知済みテーブルに追加と削除
-    insertTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
+    LioFADRCommon.insertTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
 
   end
 
@@ -419,17 +334,15 @@ end
 -- Cyclic check
 local function onUpdate()
 
---d("onUpdate()"..GetTimeStamp())
-
   -- ダンジョンを出入りしたら初回表示を有効にする
   if(IsUnitInDungeon(PLAYER_TAG) and (not LioFADR.savedVariables.isInDungeon)) then
     
-    clearTable(LioFADR.notifyFirst)
+    LioFADRCommon.clearTable(LioFADR.notifyFirst)
     LioFADR.savedVariables.isInDungeon = true
 
   elseif((not IsUnitInDungeon(PLAYER_TAG)) and (LioFADR.savedVariables.isInDungeon)) then
     
-    clearTable(LioFADR.notifyFirst)
+    LioFADRCommon.clearTable(LioFADR.notifyFirst)
     LioFADR.savedVariables.isInDungeon = false
   end
 
@@ -437,7 +350,7 @@ local function onUpdate()
   if(LioFADR.savedVariables.notifyByZoneChanging and LioFADR.savedVariables.isZoneChanged) then
 
     if(not isCooldown()) then
-      clearTable(LioFADR.notifyFirst)
+      LioFADRCommon.clearTable(LioFADR.notifyFirst)
     end
     
     LioFADR.savedVariables.isZoneChanged = false
@@ -496,8 +409,6 @@ end
 
 -- zone changed
 function LioFADR:onZoneChanged()
-  
---d("onZoneChanged()")  
   
   LioFADR.savedVariables.isZoneChanged = true
   
