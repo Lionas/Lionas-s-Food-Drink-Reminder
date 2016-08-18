@@ -2330,10 +2330,10 @@
                     {
                         ["de"] = "Steinkalttribok^m",
                     },
-                    [66254] = 
-                    {
-                        ["de"] = "Leben wiederherstellen^N",
-                    },
+--                    [66254] = 
+--                    {
+--                        ["de"] = "Leben wiederherstellen^N",
+--                    },
                     [33487] = 
                     {
                         ["de"] = "Dummy",
@@ -31486,10 +31486,10 @@
                     {
                         ["de"] = "_CRWN Food: HSM, Meal",
                     },
-                    [68413] = 
-                    {
-                        ["de"] = "Erhöht Eure maximale Magicka",
-                    },
+--                    [68413] = 
+--                    {
+--                        ["de"] = "Erhöht Eure maximale Magicka",
+--                    },
 --                    [68412] = 
 --                    {
 --                        ["de"] = "Erhöht Eure maximale Ausdauer",
@@ -31518,10 +31518,10 @@
                     {
                         ["de"] = "Schlüpfruf^m",
                     },
-                    [68409] = 
-                    {
-                        ["de"] = "Ausdauer wiederherstellen^N",
-                    },
+--                    [68409] = 
+--                    {
+--                        ["de"] = "Ausdauer wiederherstellen^N",
+--                    },
                     [42581] = 
                     {
                         ["de"] = "makelloser Dämmerbrecher^m",
@@ -31546,10 +31546,10 @@
                     {
                         ["de"] = "makelloser Dämmerbrecher^m",
                     },
-                    [68407] = 
-                    {
-                        ["de"] = "Magickaregeneration",
-                    },
+--                    [68407] = 
+--                    {
+--                        ["de"] = "Magickaregeneration",
+--                    },
                     [42588] = 
                     {
                         ["de"] = "makelloser Dämmerbrecher^m",
@@ -39870,10 +39870,10 @@
                     {
                         ["de"] = "Q4123 Theatre Block Int 1",
                     },
-                    [66551] = 
-                    {
-                        ["de"] = "Erhöht Euer maximales Leben",
-                    },
+--                    [66551] = 
+--                    {
+--                        ["de"] = "Erhöht Euer maximales Leben",
+--                    },
                     [44669] = 
                     {
                         ["de"] = "Q3642 Magical Barrier Beam",
@@ -42558,10 +42558,10 @@
                     {
                         ["de"] = "Wohlgenährt",
                     },
-                    [66141] = 
-                    {
-                        ["de"] = "Erhöht Eure Ausdauerregeneration",
-                    },
+--                    [66141] = 
+--                    {
+--                        ["de"] = "Erhöht Eure Ausdauerregeneration",
+--                    },
                     [66140] = 
                     {
                         ["de"] = "Erhöht Eure Ausdauerregeneration",
@@ -77786,10 +77786,10 @@
                     {
                         ["de"] = "Reaver",
                     },
-                    [61335] = 
-                    {
-                        ["de"] = "Lebens- und Magickaregeneration",
-                    },
+--                    [61335] = 
+--                    {
+--                        ["de"] = "Lebens- und Magickaregeneration",
+--                    },
                     [50438] = 
                     {
                         ["de"] = "Ansturm der sechs Schwerter^m",
@@ -78350,34 +78350,34 @@
                     {
                         ["de"] = "wiederherstellender Begleiter^m",
                     },
-                    [61261] = 
-                    {
-                        ["de"] = "Erhöht Eure maximale Ausdauer",
-                    },
-                    [61260] = 
-                    {
-                        ["de"] = "gestärkte Magicka^f",
-                    },
-                    [61259] = 
-                    {
-                        ["de"] = "Erhöht Euer maximales Leben",
-                    },
+--                    [61261] = 
+--                    {
+--                        ["de"] = "Erhöht Eure maximale Ausdauer",
+--                    },
+--                    [61260] = 
+--                    {
+--                        ["de"] = "gestärkte Magicka^f",
+--                    },
+--                    [61259] = 
+--                    {
+--                        ["de"] = "Erhöht Euer maximales Leben",
+--                    },
                     [61258] = 
                     {
                         ["de"] = "konsumierbare Magicka^f",
                     },
-                    [61257] = 
-                    {
-                        ["de"] = "Erhöht Euer maximales Leben und Magicka",
-                    },
+--                    [61257] = 
+--                    {
+--                        ["de"] = "Erhöht Euer maximales Leben und Magicka",
+--                    },
                     [61256] = 
                     {
                         ["de"] = "konsumierbare Magicka^f",
                     },
-                    [61255] = 
-                    {
-                        ["de"] = "Gestärktes Leben und Ausdauer",
-                    },
+--                    [61255] = 
+--                    {
+--                        ["de"] = "Gestärktes Leben und Ausdauer",
+--                    },
                     [61253] = 
                     {
                         ["de"] = "Food: HSM, Meat",
@@ -81678,26 +81678,26 @@
                     {
                         ["de"] = "Q4261 ROD CV Puzzle Flame 3",
                     },
-                    [60773] = 
-                    {
-                        ["de"] = "Ausdauergewinnung^f",
-                    },
+--                    [60773] = 
+--                    {
+--                        ["de"] = "Ausdauergewinnung^f",
+--                    },
                     [60772] = 
                     {
                         ["de"] = "schwerer Faustschlag^m",
                     },
-                    [60771] = 
-                    {
-                        ["de"] = "Magickaregeneration^f",
-                    },
+--                    [60771] = 
+--                    {
+--                        ["de"] = "Magickaregeneration^f",
+--                    },
                     [22355] = 
                     {
                         ["de"] = "Q4261 ROD CV Puzzle Flame 4",
                     },
-                    [60770] = 
-                    {
-                        ["de"] = "Magickaregeneration^f",
-                    },
+--                    [60770] = 
+--                    {
+--                        ["de"] = "Magickaregeneration^f",
+--                    },
                     [22357] = 
                     {
                         ["de"] = "rückkehrender Speer^m",
@@ -106374,10 +106374,10 @@
                     {
                         ["de"] = "Food: MS, Meal",
                     },
-                    [61294] = 
-                    {
-                        ["de"] = "Erhöht Eure maximale Magicka und Ausdauer",
-                    },
+--                    [61294] = 
+--                    {
+--                        ["de"] = "Erhöht Eure maximale Magicka und Ausdauer",
+--                    },
                     [61295] = 
                     {
                         ["de"] = "konsumierbare Magicka^f",
@@ -106486,10 +106486,10 @@
                     {
                         ["de"] = "Q4255 Knock",
                     },
-                    [61322] = 
-                    {
-                        ["de"] = "Lebensregeneration^f",
-                    },
+--                    [61322] = 
+--                    {
+--                        ["de"] = "Lebensregeneration^f",
+--                    },
                     [28555] = 
                     {
                         ["de"] = "Q4255 Door",
@@ -106498,10 +106498,10 @@
                     {
                         ["de"] = "endloser Lebensentzug^m",
                     },
-                    [61325] = 
-                    {
-                        ["de"] = "Magickaregeneration^f",
-                    },
+--                    [61325] = 
+--                    {
+--                        ["de"] = "Magickaregeneration^f",
+--                    },
                     [28558] = 
                     {
                         ["de"] = "Levitation^f",
@@ -106558,10 +106558,10 @@
                     {
                         ["de"] = "Fluch der Dominanz^m",
                     },
-                    [61340] = 
-                    {
-                        ["de"] = "Lebens- und Ausdauerregeneration",
-                    },
+--                    [61340] = 
+--                    {
+--                        ["de"] = "Lebens- und Ausdauerregeneration",
+--                    },
                     [61341] = 
                     {
                         ["de"] = "Wohlgenährt^N",
@@ -106578,10 +106578,10 @@
                     {
                         ["de"] = "Wohlgenährt^N",
                     },
-                    [61345] = 
-                    {
-                        ["de"] = "Magicka- und Ausdauerregeneration",
-                    },
+--                    [61345] = 
+--                    {
+--                        ["de"] = "Magicka- und Ausdauerregeneration",
+--                    },
                     [61346] = 
                     {
                         ["de"] = "Wohlgenährt^N",

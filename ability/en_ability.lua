@@ -54,10 +54,10 @@
                     {
                         ["en"] = "MaxMagicka",
                     },
-                    [66590] = 
-                    {
-                        ["en"] = "Magicka Recovery",
-                    },
+--                    [66590] = 
+--                    {
+--                        ["en"] = "Magicka Recovery",
+--                    },
                     [46111] = 
                     {
                         ["en"] = "Ravage Health",
@@ -198,10 +198,10 @@
 --                    {
 --                        ["en"] = "Increase Max Magicka",
 --                    },
-                    [68409] = 
-                    {
-                        ["en"] = "Restore Stamina",
-                    },
+--                    [68409] = 
+--                    {
+--                        ["en"] = "Restore Stamina",
+--                    },
                     [31826] = 
                     {
                         ["en"] = "Health Essence",
@@ -214,10 +214,10 @@
                     {
                         ["en"] = "Collect Health Essence",
                     },
-                    [68407] = 
-                    {
-                        ["en"] = "Restore Magicka",
-                    },
+--                    [68407] = 
+--                    {
+--                        ["en"] = "Restore Magicka",
+--                    },
                     [41117] = 
                     {
                         ["en"] = "Harness Magicka",
@@ -346,10 +346,10 @@
 --                    {
 --                        ["en"] = "Health Recovery",
 --                    },
-                    [66551] = 
-                    {
-                        ["en"] = "Increase Max Health",
-                    },
+--                    [66551] = 
+--                    {
+--                        ["en"] = "Increase Max Health",
+--                    },
                     [46199] = 
                     {
                         ["en"] = "Ravage Stamina",
@@ -634,10 +634,10 @@
                     {
                         ["en"] = "Regeneration",
                     },
-                    [66141] = 
-                    {
-                        ["en"] = "Stamina Recovery",
-                    },
+--                    [66141] = 
+--                    {
+--                        ["en"] = "Stamina Recovery",
+--                    },
 --                    [66137] = 
 --                    {
 --                        ["en"] = "Magicka Recovery",
@@ -698,10 +698,10 @@
                     {
                         ["en"] = "Magicka Detonation",
                     },
-                    [66254] = 
-                    {
-                        ["en"] = "Restore Health",
-                    },
+--                    [66254] = 
+--                    {
+--                        ["en"] = "Restore Health",
+--                    },
                     [17615] = 
                     {
                         ["en"] = "Well Fed: Health Regen",
@@ -806,10 +806,10 @@
                     {
                         ["en"] = "Regeneration",
                     },
-                    [61255] = 
-                    {
-                        ["en"] = "Increase Max Health & Stamina",
-                    },
+--                    [61255] = 
+--                    {
+--                        ["en"] = "Increase Max Health & Stamina",
+--                    },
                     [63208] = 
                     {
                         ["en"] = "Houndsman Regen",
@@ -862,10 +862,10 @@
                     {
                         ["en"] = "Magicka Restore",
                     },
-                    [61345] = 
-                    {
-                        ["en"] = "Magicka & Stamina Recovery",
-                    },
+--                    [61345] = 
+--                    {
+--                        ["en"] = "Magicka & Stamina Recovery",
+--                    },
                     [43768] = 
                     {
                         ["en"] = "Health Potion",
@@ -970,10 +970,10 @@
                     {
                         ["en"] = "Harness Magicka",
                     },
-                    [61340] = 
-                    {
-                        ["en"] = "Health & Stamina Recovery",
-                    },
+--                    [61340] = 
+--                    {
+--                        ["en"] = "Health & Stamina Recovery",
+--                    },
                     [62227] = 
                     {
                         ["en"] = "Magicka Increase",
@@ -982,10 +982,10 @@
                     {
                         ["en"] = "Magicka Combustion",
                     },
-                    [61325] = 
-                    {
-                        ["en"] = "Magicka Recovery",
-                    },
+--                    [61325] = 
+--                    {
+--                        ["en"] = "Magicka Recovery",
+--                    },
                     [68374] = 
                     {
                         ["en"] = "Restore Health",
@@ -1034,10 +1034,10 @@
                     {
                         ["en"] = "Magicka Beam",
                     },
-                    [61260] = 
-                    {
-                        ["en"] = "Increase Max Magicka",
-                    },
+--                    [61260] = 
+--                    {
+--                        ["en"] = "Increase Max Magicka",
+--                    },
                     [61219] = 
                     {
                         ["en"] = "Magicka Consumable",
@@ -1074,10 +1074,10 @@
                     {
                         ["en"] = "Restore Magicka",
                     },
-                    [61257] = 
-                    {
-                        ["en"] = "Increase Max Health & Magicka",
-                    },
+--                    [61257] = 
+--                    {
+--                        ["en"] = "Increase Max Health & Magicka",
+--                    },
                     [57164] = 
                     {
                         ["en"] = "Lich Regeneration",
@@ -1142,10 +1142,10 @@
                     {
                         ["en"] = "Rapid Regeneration",
                     },
-                    [68413] = 
-                    {
-                        ["en"] = "Increase Max Magicka",
-                    },
+--                    [68413] = 
+--                    {
+--                        ["en"] = "Increase Max Magicka",
+--                    },
                     [59356] = 
                     {
                         ["en"] = "Trap Regen Stopper Enemy",
@@ -1198,18 +1198,18 @@
                     {
                         ["en"] = "Stamina Curse",
                     },
-                    [61259] = 
-                    {
-                        ["en"] = "Increase Max Health",
-                    },
+--                    [61259] = 
+--                    {
+--                        ["en"] = "Increase Max Health",
+--                    },
                     [45388] = 
                     {
                         ["en"] = "Restore Stamina",
                     },
-                    [61261] = 
-                    {
-                        ["en"] = "Increase Max Stamina",
-                    },
+--                    [61261] = 
+--                    {
+--                        ["en"] = "Increase Max Stamina",
+--                    },
                     [11598] = 
                     {
                         ["en"] = "Magicka Restore",
@@ -1290,22 +1290,22 @@
                     {
                         ["en"] = "Health Boon",
                     },
-                    [60770] = 
-                    {
-                        ["en"] = "Magicka Regen",
-                    },
-                    [60771] = 
-                    {
-                        ["en"] = "Magicka Regen",
-                    },
+--                    [60770] = 
+--                    {
+--                        ["en"] = "Magicka Regen",
+--                    },
+--                    [60771] = 
+--                    {
+--                        ["en"] = "Magicka Regen",
+--                    },
                     [52497] = 
                     {
                         ["en"] = "Regeneration",
                     },
-                    [60773] = 
-                    {
-                        ["en"] = "Stamina Return",
-                    },
+--                    [60773] = 
+--                    {
+--                        ["en"] = "Stamina Return",
+--                    },
                     [50915] = 
                     {
                         ["en"] = "Ally Magicka Resistance",
@@ -1338,10 +1338,10 @@
                     {
                         ["en"] = "Magicka Resistance",
                     },
-                    [61294] = 
-                    {
-                        ["en"] = "Increase Max Magicka & Stamina",
-                    },
+--                    [61294] = 
+--                    {
+--                        ["en"] = "Increase Max Magicka & Stamina",
+--                    },
                     [12143] = 
                     {
                         ["en"] = "Well of Magicka Protection",
@@ -1450,10 +1450,10 @@
                     {
                         ["en"] = "Block Stamina Tick",
                     },
-                    [61322] = 
-                    {
-                        ["en"] = "Health Recovery",
-                    },
+--                    [61322] = 
+--                    {
+--                        ["en"] = "Health Recovery",
+--                    },
                     [222] = 
                     {
                         ["en"] = "Recover Magicka (Drink)",
@@ -1474,10 +1474,10 @@
                     {
                         ["en"] = "Magicka Combustion",
                     },
-                    [61328] = 
-                    {
-                        ["en"] = "Stamina Recovery",
-                    },
+--                    [61328] = 
+--                    {
+--                        ["en"] = "Stamina Recovery",
+--                    },
                     [16785] = 
                     {
                         ["en"] = "Q3919 - Corrupt Magicka",
@@ -1502,10 +1502,10 @@
                     {
                         ["en"] = "Restore Health",
                     },
-                    [61335] = 
-                    {
-                        ["en"] = "Health & Magicka Recovery",
-                    },
+--                    [61335] = 
+--                    {
+--                        ["en"] = "Health & Magicka Recovery",
+--                    },
                     [47392] = 
                     {
                         ["en"] = "Absorb Magicka",
