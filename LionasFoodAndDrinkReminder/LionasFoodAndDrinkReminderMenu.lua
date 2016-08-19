@@ -1,7 +1,7 @@
 ﻿-- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food & Drink Reminder"
-local Version = "0.6.0"
+local Version = "0.6.1"
 local Author = "Lionas"
 
 local LAM2 = LibStub:GetLibrary("LibAddonMenu-2.0")
@@ -97,11 +97,26 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.enableToChat = value
             end,
         },
-        [7] = {
+        [7] =
+        {
+            type = "checkbox",
+            name = GetString(LIO_FADR_ENABLE_NONE_TITLE),
+            tooltip = GetString(LIO_FADR_ENABLE_NONE_TOOLTIP),
+            default = LioFADR.savedVariables.enableNotifyAlreadyNone,
+            getFunc =
+            function()
+                return LioFADR.savedVariables.enableNotifyAlreadyNone
+            end,
+            setFunc =
+            function(value)
+                LioFADR.savedVariables.enableNotifyAlreadyNone = value
+            end,
+        },
+        [8] = {
 			      type = "header",
 			      name = GetString(LIO_FADR_ZONE_SETTING_HEADER)
         },
-        [8] =
+        [9] =
         {
             type = "checkbox",
             name = GetString(LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE),
@@ -116,7 +131,7 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.notifyByZoneChanging = value
             end,
         },
-        [9] = 
+        [10] = 
         {
             type = "slider",
             name = GetString(LIO_FADR_NOTIFY_COOLDOWN_TITLE),
@@ -134,11 +149,11 @@ function LioFADRMenu.LoadLAM2Panel()
                 LioFADR.savedVariables.cooldownSec = value
               end,
         },
-        [10] = {
+        [11] = {
 			      type = "header",
 			      name = GetString(LIO_FADR_DEBUG_SETTING_HEADER)
         },
-        [11] =
+        [12] =
         {
             type = "checkbox",
             name = GetString(LIO_FADR_DEBUG_TITLE),

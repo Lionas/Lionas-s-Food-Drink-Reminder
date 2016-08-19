@@ -18,6 +18,7 @@ LioFADR = {
     isZoneChanged = false, -- ゾーン変更したかどうか
     cooldownSec = 60, -- クールダウン時間(秒)
     lastNotifyTime = 0, -- 最後に通知した時間
+    enableNotifyAlreadyNone = true, -- 既に効果が切れている時に通知するかどうか
   },
   debug = false, -- デバッグ出力用
 }
@@ -74,6 +75,7 @@ local function initializePrefs()
       cooldownSec = LioFADR.default.cooldownSec,
       lastNotifyTime = LioFADR.default.lastNotifyTime,
       debug = LioFADR.default.debug,
+      enableNotifyAlreadyNone = LioFADR.default.enableNotifyAlreadyNone,
     }
   )
 
@@ -133,6 +135,9 @@ local function buildNotifyMessage(remainSec, buffName)
 
   else
     -- 食事の効果が切れました！
+    -- 連続で通知しないように、通知済みテーブルに追加と削除
+    LioFADRCommon.insertTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
+    
     return LioFADRCommon.getColoredString(ATTENTION_COLOR, GetString(LIO_FADR_NEAR_EXPIRED))
 
   end
@@ -308,8 +313,11 @@ local function scanBuffs()
   -- 効果が切れたバフの通知
   notifyExpiredBuffs(currentBuffs)
 
-  -- 効果がない時で、戦闘中でない場合、「食事の効果を発動してください」のメッセージをVanilla UI上で表示する
-  if (LioFADRCommon.getTableLength(currentBuffs) == 0) and (not IsUnitInCombat(PLAYER_TAG)) and (not LioFADRCommon.isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
+  -- 効果がない時で、戦闘中でない場合、「食事の効果がありません」のメッセージをVanilla UI上で表示する
+  if (LioFADR.savedVariables.enableNotifyAlreadyNone and 
+      LioFADRCommon.getTableLength(currentBuffs) == 0) and
+      (not IsUnitInCombat(PLAYER_TAG)) and
+      (not LioFADRCommon.isContain(EXPIRED_DUMMY_ID, LioFADR.notifyExpired)) then
 
     -- 通知
     local message = GetString(LIO_FADR_SHOULD_EAT_DRINK)
