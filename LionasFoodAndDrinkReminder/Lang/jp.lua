@@ -35,5 +35,8 @@ ZO_CreateStringId("LIO_FADR_TOP_SETTINGHEADER", "全体設定")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "ゾーン移動")
 ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "デバッグ用")
 
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "既に効果が切れている場合に通知する")
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "ログイン直後や効果が切れた後にゾーン移動やダンジョンに出入りした時に、通知する場合にチェックしてください")
+
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")

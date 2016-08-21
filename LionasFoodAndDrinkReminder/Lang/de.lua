@@ -11,7 +11,6 @@ ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_HOUR_MIN", "Die Mahlzeit läuft in <<1>>
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_MIN", "Die Mahlzeit läuft in <<1>>min aus.")
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_CLOSED", "Die Mahlzeit läuft bald aus.")
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRED", "Du hast den Wirkung der Mahlzeit verloren!")
- 
 ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "Es ist keine Mahlzeit aktiv!")
  
 -- menus
@@ -28,12 +27,15 @@ ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE", "Erinnerung nach Zon
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "Nach jedem Zonenwechsel bekommst du eine Erinnerung über den Zustand deiner Mahlzeit.")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "Zeit zwischen Meldungen [sek]")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "Falls Mitteilungen in dieser Zeit vorkommen sollten, werden diese nicht wiedergegeben.")
-ZO_CreateStringId("LIO_FADR_DEBUG_TITLE", "Ermöglichen Sie Fehlersuchprogramm-Produktion")
-ZO_CreateStringId("LIO_FADR_DEBUG_TOOLTIP", "Wenn Probleme vorgekommen werden, überprüfen Sie bitte für den Bericht.")
+ZO_CreateStringId("LIO_FADR_DEBUG_TITLE", "aktiviere Debug Modus")
+ZO_CreateStringId("LIO_FADR_DEBUG_TOOLTIP", "Falls es gewisse Probleme gibt, kann man mit dem Debug Modus die entsprechenden Informationen auslesen.")
 
-ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "General")
-ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Zone ändern")
-ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "für das Fehlersuchprogramm")
-
+ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "Allgemeines")
+ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Meldungen in Zone")
+ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "Fehlersuche")
+ 
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Notify even if buff is already expired")
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "If you want to be notified immediately when your character is active or when you moved zone or entered the dungeon after meals buff expired, please check out.")
+ 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
