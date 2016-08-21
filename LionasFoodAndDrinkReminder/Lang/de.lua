@@ -34,8 +34,8 @@ ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "Allgemeines")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Meldungen in Zone")
 ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "Fehlersuche")
  
-ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Notify even if buff is already expired")
-ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "If you want to be notified immediately when your character is active or when you moved zone or entered the dungeon after meals buff expired, please check out.")
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Meldungen wenn ausgelaufen")
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "Auch wenn du nach ausgelaufender Mahlzeit, beim Wechseln einer Zone oder beim Betreten eines Verlieses, informiert werden möchtest, aktiviere diese Einstellung.")
  
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
