@@ -38,5 +38,8 @@ ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "For debug")
 ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Notify even if buff is already expired")
 ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "If you want to be notified immediately when your character is active or when you moved zone or entered the dungeon after meals buff expired, please check out.")
 
+ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TITLE", "Enable icon notification")
+ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "If you enable notifying with icon, please check it.")
+
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Enable/Disable Notify")

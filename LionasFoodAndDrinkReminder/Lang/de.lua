@@ -37,5 +37,8 @@ ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "Fehlersuche")
 ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Meldungen wenn ausgelaufen")
 ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "Auch wenn du nach ausgelaufender Mahlzeit, beim Wechseln einer Zone oder beim Betreten eines Verlieses, informiert werden möchtest, aktiviere diese Einstellung.")
  
+ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TITLE", "Aktiviere Symbol")
+ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "Wenn Sie über den Zustand Ihrer Mahlzeit mit Symbol informiert würden , aktivieren Sie diese Einstellung.")
+ 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
