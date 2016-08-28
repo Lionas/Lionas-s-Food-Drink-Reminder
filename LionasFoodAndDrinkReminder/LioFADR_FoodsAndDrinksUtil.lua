@@ -10,7 +10,7 @@ local FoodsAndDrinks = {
   [66568] = {
     ["jp"] = "最大マジカを増加させる",
     ["en"] = "Increase Max Magicka",
-    ["de"] = "gestärkte Magicka^f",
+    ["de"] = "gestärkte Magicka",
   },
   [66576] = 
   {
@@ -22,13 +22,13 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "体力再生",
     ["en"] = "Health Recovery",
-    ["de"] = "Lebensregeneration^f",   
+    ["de"] = "Lebensregeneration",   
   },
   [66594] = 
   {
     ["jp"] = "スタミナ再生",
     ["en"] = "Stamina Recovery",
-    ["de"] = "Ausdauerregeneration^f",
+    ["de"] = "Ausdauerregeneration",
   },
   [66125] = 
   {
@@ -70,7 +70,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "スタミナ回復",
     ["en"] = "Restore Stamina",
-    ["de"] = "Ausdauer wiederherstellen^N",
+    ["de"] = "Ausdauer wiederherstellen",
   },
   [62576] = 
   {
@@ -94,7 +94,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "マジカ再生",
     ["en"] = "Magicka Recovery",
-    ["de"] = "Magickaregeneration^f",
+    ["de"] = "Magickaregeneration",
   },
   [66551] = 
   {
@@ -106,7 +106,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "スタミナ回復",
     ["en"] = "Restore Stamina",
-    ["de"] = "Ausdauer wiederherstellen^N",
+    ["de"] = "Ausdauer wiederherstellen",
   },
   [68413] = 
   {
@@ -130,7 +130,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "体力回復",
     ["en"] = "Restore Health",
-    ["de"] = "Leben wiederherstellen^N",
+    ["de"] = "Leben wiederherstellen",
   },
   [66141] = 
   {
@@ -142,19 +142,19 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "マジカ再生",
     ["en"] = "Magicka Regen",
-    ["de"] = "Magickaregeneration^f",
+    ["de"] = "Magickaregeneration",
   },
   [60771] = 
   {
     ["jp"] = "マジカ再生",
     ["en"] = "Magicka Regen",
-    ["de"] = "Magickaregeneration^f",
+    ["de"] = "Magickaregeneration",
   },
   [60773] = 
   {
     ["jp"] = "スタミナ回復",
     ["en"] = "Stamina Return",
-    ["de"] = "Ausdauergewinnung^f",
+    ["de"] = "Ausdauergewinnung",
   },
   [61345] = 
   {
@@ -166,7 +166,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "マジカ再生",
     ["en"] = "Magicka Recovery",
-    ["de"] = "Magickaregeneration^f",
+    ["de"] = "Magickaregeneration",
   },
   [61294] = 
   {
@@ -178,7 +178,7 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "最大マジカを増加させる",
     ["en"] = "Increase Max Magicka",
-    ["de"] = "gestärkte Magicka^f",
+    ["de"] = "gestärkte Magicka",
   },
   [61257] = 
   {
@@ -196,13 +196,13 @@ local FoodsAndDrinks = {
   {
     ["jp"] = "体力再生",
     ["en"] = "Health Recovery",
-    ["de"] = "Lebensregeneration^f",
+    ["de"] = "Lebensregeneration",
   },
   [61328] = 
   {
     ["jp"] = "スタミナ再生",
     ["en"] = "Stamina Recovery",
-    ["de"] = "Ausdauerregeneration^f",
+    ["de"] = "Ausdauerregeneration",
   },
   [61335] = 
   {
