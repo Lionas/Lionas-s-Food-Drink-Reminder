@@ -19,8 +19,16 @@ LioFADR = {
     cooldownSec = 60, -- クールダウン時間(秒)
     lastNotifyTime = 0, -- 最後に通知した時間
     enableNotifyAlreadyNone = true, -- 既に効果が切れている時に通知するかどうか
+    enableNotifyIcon = true, -- 通知アイコンを使用するかどうか
+    iconPosX = 10, -- 警告アイコンの位置X
+    iconPosY = 150, -- 警告アイコンの位置Y    
   },
   debug = false, -- デバッグ出力用
+  icon = nil, -- 警告アイコン
+  notifyMessage = nil, -- 通知メッセージ
+  isNeverNotify = false, -- 次の通知更新までアイコンを表示しない
+  isHideScene = false, -- シーンか隠れているかどうか
+  isHideReticle = false, -- 照準が隠れているかどうか
 }
 
 local PLAYER_TAG = "player"
@@ -31,7 +39,9 @@ local PLAYER_DEACTIVATED_REGISTER_NAME = LioFADR.name .. "_Player_DeActivate"
 local UPDATE_INTERVAL_REGISTER_NAME = LioFADR.name .. "_Update"
 local ZONE_CHANGED_REGISTER_NAME = LioFADR.name .. "_ZoneChanged"
 local SAVED_PREFS_NAME = LioFADR.name .. "_SavedPrefs"
-local SAVED_PREFS_VERSION = 2
+local ICON_NAME = LioFADR.name .. "_AlertIcon"
+
+local SAVED_PREFS_VERSION = 3
 
 local UPDATE_INTERVAL_MSEC = 1000
 local HOUR_PER_SECS = 3600
@@ -49,6 +59,11 @@ local ATTENTION_COLOR = "ff3DA5"
 -- チャットメッセージ
 local DMSG_HEADER = "[" .. LioFADR.displayName .. "] "
 
+-- 警告アイコンのパス
+local ICON_PATH = [[/esoui/art/icons/quest_food_004.dds]] -- 警告アイコンのパス
+local ICON_SIZE = 64
+
+
 -- Clear tables
 function LioFADR:clearTables()
 
@@ -63,22 +78,111 @@ end
 -- Initialize preferences
 local function initializePrefs()
 
-  LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil,
-    {
-      enable = LioFADR.default.enable,
-      notifyThresholdMins = LioFADR.default.notifyThresholdMins,
-      notifyInDungeon = LioFADR.default.notifyInDungeon,
-      isInDungeon = LioFADR.default.isInDungeon,
-      enableToChat = LioFADR.default.enableToChat,
-      notifyByZoneChanging = LioFADR.default.notifyByZoneChanging,
-      isZoneChanged = LioFADR.default.isZoneChanged,
-      cooldownSec = LioFADR.default.cooldownSec,
-      lastNotifyTime = LioFADR.default.lastNotifyTime,
-      debug = LioFADR.default.debug,
-      enableNotifyAlreadyNone = LioFADR.default.enableNotifyAlreadyNone,
-    }
-  )
+  local defaultList = {
+    useAccoutnWide = LioFADR.default.useAccountWide,
+    enable = LioFADR.default.enable,
+    notifyThresholdMins = LioFADR.default.notifyThresholdMins,
+    notifyInDungeon = LioFADR.default.notifyInDungeon,
+    isInDungeon = LioFADR.default.isInDungeon,
+    enableToChat = LioFADR.default.enableToChat,
+    notifyByZoneChanging = LioFADR.default.notifyByZoneChanging,
+    isZoneChanged = LioFADR.default.isZoneChanged,
+    cooldownSec = LioFADR.default.cooldownSec,
+    lastNotifyTime = LioFADR.default.lastNotifyTime,
+    debug = LioFADR.default.debug,
+    enableNotifyAlreadyNone = LioFADR.default.enableNotifyAlreadyNone,
+    enableNotifyIcon = LioFADR.default.enableNotifyIcon,
+    iconPosX = LioFADR.default.iconPosX,
+    iconPosY = LioFADR.default.iconPosY,
+  }
 
+  LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil, defaultList)
+
+end
+
+
+-- Icon
+function hideIcon()
+  
+  -- アイコンの非表示
+  if(not LioFADRContainer:IsHidden()) then
+    LioFADRContainer:SetHidden(true)
+  end
+  
+  if(not LioFADR.icon:IsHidden()) then
+    LioFADR.icon:SetHidden(true)
+  end
+  
+end
+
+function showIcon()
+  
+  if((not LioFADR.isHideScene or LioFADR.isHideReticle) and LioFADR.savedVariables.enableNotifyIcon) then
+  
+    -- アイコンの表示
+    if(LioFADRContainer:IsHidden()) then
+      LioFADRContainer:SetHidden(false)
+    end
+    
+    if(LioFADR.icon:IsHidden()) then
+      LioFADR.icon:SetHidden(false)
+    end
+    
+  end
+
+end
+
+
+function OnIconMouseUp(self, mouseButton, upInside)
+
+  if mouseButton == 2 and upInside then -- right click
+    
+    LioFADR.isNeverNotify = true
+    hideIcon()
+    
+  end
+
+end
+
+function OnIconMouseEnter(icon)
+  
+  ZO_Tooltips_ShowTextTooltip(icon, BOTTOM, LioFADR.notifyMessage)
+  
+end
+
+function OnIconMouseExit()
+  
+  ZO_Tooltips_HideTextTooltip()
+  
+end
+
+function OnIconMoveStop(icon)
+  
+  LioFADR.savedVariables.iconPosX = icon:GetLeft()
+  LioFADR.savedVariables.iconPosY = icon:GetTop()
+  
+end
+
+local function createAlertIcon()
+  
+  local icon = WINDOW_MANAGER:CreateControl(ICON_NAME, LioFADRContainer, CT_TEXTURE)
+  LioFADR.icon = icon
+  
+  icon:SetHidden(true)
+  icon:SetMouseEnabled(true)
+  icon:SetMovable(true)
+  icon:SetTexture(ICON_PATH)
+  icon:SetDimensions(ICON_SIZE, ICON_SIZE)
+  icon:ClearAnchors()
+  icon:SetParent(LioFADRContainer)
+  icon:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, LioFADR.savedVariables.iconPosX, LioFADR.savedVariables.iconPosY)
+  icon:SetDrawLayer(1)
+
+  icon:SetHandler("OnMouseUp", function(self, mouseButton, upInside) OnIconMouseUp(self, mouseButton, upInside) end)
+  icon:SetHandler("OnMouseEnter", function() OnIconMouseEnter(icon) end)
+  icon:SetHandler("OnMouseExit", function() OnIconMouseExit() end)
+  icon:SetHandler("OnMoveStop", function() OnIconMoveStop(icon) end)
+  
 end
 
 
@@ -93,6 +197,12 @@ end
 
 -- 通知
 local function notify(message, buffName, icon)
+
+  -- 通知メッセージの保存
+  LioFADR.notifyMessage = message
+  
+  -- アイコン非表示フラグをOFF
+  LioFADR.isNeverNotify = false
 
   -- チャット欄に通知
   outputChat(message)
@@ -163,7 +273,7 @@ local function notifyRemainTime(remainSec, abilityId)
     LioFADRCommon.insertTable(LioFADR.notifyRemain, abilityId)
 
   elseif (remainSec < THRESHOLD_EXPIRE_SECS) and (not LioFADRCommon.isContain(abilityId, LioFADR.notifyClosed)) then
-    -- 指定時間を切ったら最終通知
+    -- 60秒を切ったら最終通知
 
     LioFADRCommon.insertTable(LioFADR.notifyFirst, abilityId)
 
@@ -245,7 +355,10 @@ local function notifyExpiredBuffs(currentBuffs)
     local buffName = GetAbilityName(id)
     local buffIcon = GetAbilityIcon(id)
     notify(buildNotifyMessage(0, buffName), buffName, buffIcon)
-
+    
+    -- 食事切れアイコンの表示
+    showIcon()
+    
   end
 
 end
@@ -328,6 +441,19 @@ local function scanBuffs()
     LioFADRCommon.insertTable(LioFADR.notifyExpired, EXPIRED_DUMMY_ID)
 
   end
+
+  -- アイコンの表示判断
+  if(((LioFADRCommon.getTableLength(LioFADR.notifyRemain) > 0) or 
+     (LioFADRCommon.getTableLength(LioFADR.notifyClosed) > 0) or
+     (LioFADRCommon.getTableLength(LioFADR.notifyExpired)> 0)) and
+     not LioFADR.isNeverNotify) then
+    
+    showIcon()
+    
+  else
+    hideIcon()
+  end
+
 
 end
 
@@ -442,6 +568,46 @@ local function onPlayerActivated()
 end
 
 
+local function initializeIcon()
+  
+  local fragment = ZO_FadeSceneFragment:New(LioFADRContainer, nil, 0)
+	HUD_SCENE:AddFragment(fragment)
+	HUD_UI_SCENE:AddFragment(fragment)
+  
+  -- auto hide UI
+  HUD_SCENE:RegisterCallback("StateChange", 
+    function(oldState, newState)
+    
+      if(newState == SCENE_SHOWING) then
+        LioFADR.isHideScene = false
+      end
+      
+      if(newState == SCENE_HIDDEN) then
+        LioFADR.isHideScene = true
+      end
+      
+    end
+  )
+  HUD_UI_SCENE:RegisterCallback("StateChange", 
+    function(oldState, newState)
+    
+      if(newState == SCENE_SHOWING) then
+        LioFADR.isHideReticle = true
+      end
+      
+      if(newState == SCENE_HIDDEN) then
+        LioFADR.isHideReticle = false
+      end
+      
+    end
+  )
+  
+  -- craeteIcon
+  createAlertIcon()
+
+end
+
+
 -- OnLoad
 local function onLoad(event, addon)
 
@@ -451,6 +617,9 @@ local function onLoad(event, addon)
 
   -- 保存領域の初期化
   initializePrefs()
+
+  -- 警告アイコンの初期化
+  initializeIcon()
 
   -- regist & unregist handler
   EVENT_MANAGER:RegisterForEvent(PLAYER_ACTIVATED_REGISTER_NAME, EVENT_PLAYER_ACTIVATED, onPlayerActivated)  
