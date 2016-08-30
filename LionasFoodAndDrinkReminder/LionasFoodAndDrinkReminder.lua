@@ -137,7 +137,7 @@ function OnIconMouseUp(self, mouseButton, upInside)
 
   if mouseButton == 2 and upInside then -- right click
     
-    LioFADR.isNeverNotify = true
+    LioFADR.isNeverNotify = true   
     hideIcon()
     
   end
@@ -364,6 +364,24 @@ local function notifyExpiredBuffs(currentBuffs)
 end
 
 
+-- show / hide icon
+local function setIconVisibility()
+  
+  if(((LioFADRCommon.getTableLength(LioFADR.notifyRemain) > 0) or 
+     (LioFADRCommon.getTableLength(LioFADR.notifyClosed) > 0) or
+     (LioFADRCommon.getTableLength(LioFADR.notifyExpired)> 0)) and
+     not LioFADR.isNeverNotify) then
+    
+    showIcon()
+    
+  else
+    
+    hideIcon()
+  end
+  
+end
+
+
 -- Scan buffs
 local function scanBuffs()
 
@@ -443,17 +461,7 @@ local function scanBuffs()
   end
 
   -- アイコンの表示判断
-  if(((LioFADRCommon.getTableLength(LioFADR.notifyRemain) > 0) or 
-     (LioFADRCommon.getTableLength(LioFADR.notifyClosed) > 0) or
-     (LioFADRCommon.getTableLength(LioFADR.notifyExpired)> 0)) and
-     not LioFADR.isNeverNotify) then
-    
-    showIcon()
-    
-  else
-    hideIcon()
-  end
-
+  setIconVisibility()
 
 end
 
@@ -586,6 +594,9 @@ local function initializeIcon()
         LioFADR.isHideScene = true
       end
       
+      -- アイコンの表示判断
+      setIconVisibility()
+
     end
   )
   HUD_UI_SCENE:RegisterCallback("StateChange", 
@@ -598,6 +609,9 @@ local function initializeIcon()
       if(newState == SCENE_HIDDEN) then
         LioFADR.isHideReticle = false
       end
+      
+      -- アイコンの表示判断
+      setIconVisibility()
       
     end
   )
