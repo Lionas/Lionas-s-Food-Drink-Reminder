@@ -1,6 +1,6 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="LioFADRContainer" mouseEnabled="true" movable="false" clampedToScreen="true" hidden="false" tier="2" layer="2" level="2" >
+        <TopLevelControl name="LioFADRContainer" mouseEnabled="true" movable="false" clampedToScreen="true" hidden="false" tier="2" layer="2" level="2" hidden="true" >
             <Dimensions x="1" y="1" />
             <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="CENTER" offsetX="0" offsetY="0"/>
         </TopLevelControl>
