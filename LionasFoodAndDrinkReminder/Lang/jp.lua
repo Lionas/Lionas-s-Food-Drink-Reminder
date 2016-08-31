@@ -39,5 +39,9 @@ ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "ログイン直後や効果�
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TITLE", "通知アイコンを表示する")
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "アイコンで通知する場合はチェックしてください")
 
+ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TITLE", "アカウント共通設定を有効にする")
+ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TOOLTIP", "アカウントで共通の設定を使用する場合はチェックしてください")
+ZO_CreateStringId("LIO_FADR_UI_WARN", "この設定を変更するとUIの再読み込みが行われます")
+
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "通知の切り替え")

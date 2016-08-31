@@ -21,7 +21,8 @@ LioFADR = {
     enableNotifyAlreadyNone = true, -- 既に効果が切れている時に通知するかどうか
     enableNotifyIcon = true, -- 通知アイコンを使用するかどうか
     iconPosX = 10, -- 警告アイコンの位置X
-    iconPosY = 150, -- 警告アイコンの位置Y    
+    iconPosY = 150, -- 警告アイコンの位置Y
+    useAccountWide = true, -- アカウント共有
   },
   debug = false, -- デバッグ出力用
   icon = nil, -- 警告アイコン
@@ -41,7 +42,7 @@ local ZONE_CHANGED_REGISTER_NAME = LioFADR.name .. "_ZoneChanged"
 local SAVED_PREFS_NAME = LioFADR.name .. "_SavedPrefs"
 local ICON_NAME = LioFADR.name .. "_AlertIcon"
 
-local SAVED_PREFS_VERSION = 3
+local SAVED_PREFS_VERSION = 4
 
 local UPDATE_INTERVAL_MSEC = 1000
 local HOUR_PER_SECS = 3600
@@ -79,7 +80,6 @@ end
 local function initializePrefs()
 
   local defaultList = {
-    useAccoutnWide = LioFADR.default.useAccountWide,
     enable = LioFADR.default.enable,
     notifyThresholdMins = LioFADR.default.notifyThresholdMins,
     notifyInDungeon = LioFADR.default.notifyInDungeon,
@@ -94,9 +94,14 @@ local function initializePrefs()
     enableNotifyIcon = LioFADR.default.enableNotifyIcon,
     iconPosX = LioFADR.default.iconPosX,
     iconPosY = LioFADR.default.iconPosY,
+    useAccountWide = LioFADR.default.useAccountWide,
   }
 
-  LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil, defaultList)
+  LioFADR.PREFS_NAME = SAVED_PREFS_NAME
+  LioFADR.savedVariables = ZO_SavedVars:NewAccountWide(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil, defaultList)
+  if(not LioFADR.savedVariables.useAccountWide) then
+    LioFADR.savedVariables = ZO_SavedVars:New(SAVED_PREFS_NAME, SAVED_PREFS_VERSION, nil, defaultList)
+  end
 
 end
 

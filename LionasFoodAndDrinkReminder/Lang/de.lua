@@ -40,5 +40,9 @@ ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "Auch wenn du nach ausgelaufen
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TITLE", "Aktiviere Symbol")
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "Wenn Sie über den Zustand Ihrer Mahlzeit mit Symbol informiert würden , aktivieren Sie diese Einstellung.")
  
+ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TITLE", "Enable account-wide settings")
+ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TOOLTIP", "If you enable to use account-wide settings, please check it.")
+ZO_CreateStringId("LIO_FADR_UI_WARN", "Changing this option will trigger a reload of the user interface.")
+ 
 -- keybinds
 ZO_CreateStringId("SI_BINDING_NAME_LIO_FADR_ACTIVATE", "Aktiviere/Deaktiviere Meldung")
