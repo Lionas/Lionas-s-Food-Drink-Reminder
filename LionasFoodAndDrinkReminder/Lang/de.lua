@@ -11,10 +11,10 @@ ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_HOUR_MIN", "Die Mahlzeit läuft in <<1>>
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_MIN", "Die Mahlzeit läuft in <<1>>min aus.")
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRE_CLOSED", "Die Mahlzeit läuft bald aus.")
 ZO_CreateStringId("LIO_FADR_NEAR_EXPIRED", "Du hast den Wirkung der Mahlzeit verloren!")
-ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "Es ist keine Mahlzeit aktiv!")
+ZO_CreateStringId("LIO_FADR_SHOULD_EAT_DRINK", "Keine Mahlzeit aktiv!")
  
 -- menus
-ZO_CreateStringId("LIO_FADR_DESCRIPTION", "Dieses AddOn zeigt dir den Status deiner Mahlzeit an..")
+ZO_CreateStringId("LIO_FADR_DESCRIPTION", "Dieses AddOn zeigt dir den Status deiner Mahlzeit an.")
 ZO_CreateStringId("LIO_FADR_ENABLE_TITLE", "Aktiviere Meldungen")
 ZO_CreateStringId("LIO_FADR_ENABLE_TOOLTIP", "Wenn du über den Zustand deiner Mahlzeit informiert werde möchtest, aktiviere diese Einstellung.")
 ZO_CreateStringId("LIO_FADR_NOTIFY_THRESHOLD_TITLE", "Schwelle für Erinnerung in [min]")
@@ -26,22 +26,22 @@ ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_TO_CHAT_TOOLTIP", "Mitteilungen und Zu
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TITLE", "Erinnerung nach Zonenwechsel")
 ZO_CreateStringId("LIO_FADR_NOTIFY_BY_ZONE_CHANGING_TOOLTIP", "Nach jedem Zonenwechsel bekommst du eine Erinnerung über den Zustand deiner Mahlzeit.")
 ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TITLE", "Zeit zwischen Meldungen [sek]")
-ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "Falls Mitteilungen in dieser Zeit vorkommen sollten, werden diese nicht wiedergegeben.")
+ZO_CreateStringId("LIO_FADR_NOTIFY_COOLDOWN_TOOLTIP", "Falls Mitteilungen innerhalb diesem Wert vorkommen sollten, werden diese nicht wiedergegeben.")
 ZO_CreateStringId("LIO_FADR_DEBUG_TITLE", "aktiviere Debug Modus")
 ZO_CreateStringId("LIO_FADR_DEBUG_TOOLTIP", "Falls es gewisse Probleme gibt, kann man mit dem Debug Modus die entsprechenden Informationen auslesen.")
-
+ 
 ZO_CreateStringId("LIO_FADR_TOP_SETTING_HEADER", "Allgemeines")
 ZO_CreateStringId("LIO_FADR_ZONE_SETTING_HEADER", "Meldungen in Zone")
 ZO_CreateStringId("LIO_FADR_DEBUG_SETTING_HEADER", "Fehlersuche")
  
 ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TITLE", "Meldungen wenn ausgelaufen")
-ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "Auch wenn du nach ausgelaufender Mahlzeit, beim Wechseln einer Zone oder beim Betreten eines Verlieses, informiert werden möchtest, aktiviere diese Einstellung.")
+ZO_CreateStringId("LIO_FADR_ENABLE_NONE_TOOLTIP", "Beim Wechseln einer Zone oder beim Betreten eines Verlieses wirst du über den Zustand informiert.")
  
 ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TITLE", "Aktiviere Symbol")
-ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "Wenn Sie über den Zustand Ihrer Mahlzeit mit Symbol informiert würden , aktivieren Sie diese Einstellung.")
+ZO_CreateStringId("LIO_FADR_ENABLE_NOTIFY_ICON_TOOLTIP", "Zeigt den Zustand der Mahlzeit mit einem Symbol an.")
  
 ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TITLE", "Accountweite Einstellung")
-ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TOOLTIP", "Wenn du die Einstellungen für den ganzen Account aktivieren willst, aktiviere diese Option.")
+ZO_CreateStringId("LIO_FADR_ENABLE_ACCOUNTWIDE_TOOLTIP", "Wenn du die Einstellungen für den ganzen Account aktivieren möchtest, aktiviere diese Option.")
 ZO_CreateStringId("LIO_FADR_UI_WARN", "Diese Option zu wechselt wird ein \'ReloadUI\' auslösen.")
  
 -- keybinds
