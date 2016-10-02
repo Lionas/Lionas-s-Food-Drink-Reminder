@@ -264,6 +264,12 @@ local FoodsAndDrinks = {
     ["en"] = "",
     ["de"] = "",
   },
+  [68411] = 
+  {
+    ["jp"] = "",
+    ["en"] = "",
+    ["de"] = "Erhöht alle Attribute",
+  },
 
 }
 
