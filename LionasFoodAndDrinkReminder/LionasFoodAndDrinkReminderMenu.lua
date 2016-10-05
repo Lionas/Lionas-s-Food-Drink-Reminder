@@ -1,7 +1,7 @@
 -- Lionas's Food & Drink Reminder
 -- Author: Lionas
 local PanelTitle = "Lionas's Food & Drink Reminder"
-local Version = "0.8.1"
+local Version = "1.0.0"
 local Author = "Lionas"
 
 local LAM2 = LibStub:GetLibrary("LibAddonMenu-2.0")
